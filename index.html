@@ -281,10 +281,11 @@ tr:hover td{background:var(--gray-50)}
 
     <!-- ===== 办案号申请 ===== -->
     <div class="page" id="page-case-number">
-      <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
         <div class="stat-card"><div class="label">本月申请</div><div class="value">56</div></div>
-        <div class="stat-card green"><div class="label">已分配</div><div class="value">48</div></div>
-        <div class="stat-card orange"><div class="label">待审核</div><div class="value">3</div></div>
+        <div class="stat-card orange"><div class="label">未报省厅</div><div class="value">2</div></div>
+        <div class="stat-card" style="border-left-color:var(--info)"><div class="label">已报省厅</div><div class="value">5</div></div>
+        <div class="stat-card green"><div class="label">已获取办案号</div><div class="value">4</div></div>
       </div>
       <div class="panel">
         <div class="panel-header"><h3>审批流程</h3></div>
@@ -292,9 +293,13 @@ tr:hover td{background:var(--gray-50)}
           <div class="flow-steps">
             <div class="flow-step done"><div class="step-dot">1</div><div class="step-label">区县工作人员<br>提交申请</div></div>
             <div class="flow-step done"><div class="step-dot">2</div><div class="step-label">区县分局<br>初审</div></div>
-            <div class="flow-step current"><div class="step-dot">3</div><div class="step-label">市局<br>统一申领</div></div>
-            <div class="flow-step"><div class="step-dot">4</div><div class="step-label">省厅<br>下发号段</div></div>
-            <div class="flow-step"><div class="step-dot">5</div><div class="step-label">市局<br>分配下传</div></div>
+            <div class="flow-step done"><div class="step-dot">3</div><div class="step-label">市局<br>汇总审核</div></div>
+            <div class="flow-step current"><div class="step-dot">4</div><div class="step-label">市局统一<br>报省厅申领</div></div>
+            <div class="flow-step"><div class="step-dot">5</div><div class="step-label">省厅<br>下发号段</div></div>
+            <div class="flow-step"><div class="step-dot">6</div><div class="step-label">市局分配<br>下发区县</div></div>
+          </div>
+          <div style="margin-top:12px;padding:10px 14px;background:var(--primary-light);border-radius:var(--radius);font-size:12px;color:var(--primary);display:flex;align-items:center;gap:6px">
+            <strong>流程说明：</strong>区县分局初审通过后，由市局汇总统一对接省厅接口申领办案号；省厅返回号段后，市局将办案号分配下发至各区县。
           </div>
         </div>
       </div>
@@ -302,18 +307,21 @@ tr:hover td{background:var(--gray-50)}
         <div class="panel-header"><h3>办案号申请列表</h3><button class="btn btn-primary btn-sm" onclick="showModal('modal-apply')">+ 新增申请</button></div>
         <div class="panel-body" style="padding:0">
           <div class="filter-bar" style="padding:16px 12px 0">
-            <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" placeholder="搜索办案号/申请人"></div>
-            <select class="form-select" style="width:140px"><option>全部状态</option><option>待审核</option><option>审核通过</option><option>已分配</option></select>
+            <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" placeholder="搜索申请编号/区县"></div>
+            <select class="form-select" style="width:140px"><option>全部省厅状态</option><option>未报省厅</option><option>已报省厅</option><option>已获取办案号</option></select>
             <select class="form-select" style="width:140px"><option>全部区县</option><option>XX区</option><option>YY县</option><option>ZZ区</option></select>
           </div>
           <div class="table-wrap">
           <table>
-            <thead><tr><th>申请编号</th><th>申请区县</th><th>申请人</th><th>申请数量</th><th>案件类型</th><th>状态</th><th>提交时间</th><th>操作</th></tr></thead>
+            <thead><tr><th>申请编号</th><th>申请区县</th><th>申请人</th><th>申请数量</th><th>案件类型</th><th>区县审核</th><th>省厅状态</th><th>提交时间</th><th>操作</th></tr></thead>
             <tbody>
-              <tr><td>AP-20260616-001</td><td>XX区</td><td>张三</td><td>10</td><td>占道经营</td><td><span class="badge badge-orange">待审核</span></td><td>2026-06-16</td><td><button class="btn-ghost btn-sm" onclick="showModal('modal-apply')">审核</button></td></tr>
-              <tr><td>AP-20260615-003</td><td>YY县</td><td>李四</td><td>5</td><td>违章搭建</td><td><span class="badge badge-blue">市局审核中</span></td><td>2026-06-15</td><td><button class="btn-ghost btn-sm">查看</button></td></tr>
-              <tr><td>AP-20260615-002</td><td>ZZ区</td><td>王五</td><td>8</td><td>噪音扰民</td><td><span class="badge badge-green">已分配</span></td><td>2026-06-15</td><td><button class="btn-ghost btn-sm">查看</button></td></tr>
-              <tr><td>AP-20260614-001</td><td>XX区</td><td>赵六</td><td>15</td><td>垃圾分类</td><td><span class="badge badge-green">已分配</span></td><td>2026-06-14</td><td><button class="btn-ghost btn-sm">查看</button></td></tr>
+              <tr><td>AP-20260616-001</td><td>XX区</td><td>张三</td><td>10</td><td>占道经营</td><td><span class="badge badge-orange">待审核</span></td><td><span class="badge badge-gray">未报省厅</span></td><td>2026-06-16</td><td><button class="btn-ghost btn-sm" onclick="showModal('modal-apply')">审核</button></td></tr>
+              <tr><td>AP-20260616-002</td><td>YY县</td><td>李四</td><td>5</td><td>违章搭建</td><td><span class="badge badge-green">已通过</span></td><td><span class="badge badge-gray">未报省厅</span></td><td>2026-06-16</td><td><button class="btn btn-primary btn-sm" onclick="showModal('modal-report')">报省厅</button></td></tr>
+              <tr><td>AP-20260615-005</td><td>ZZ区</td><td>王五</td><td>8</td><td>噪音扰民</td><td><span class="badge badge-green">已通过</span></td><td><span class="badge badge-blue">已报省厅</span></td><td>2026-06-15</td><td><button class="btn-ghost btn-sm">查看</button></td></tr>
+              <tr><td>AP-20260615-003</td><td>XX区</td><td>赵六</td><td>15</td><td>垃圾分类</td><td><span class="badge badge-green">已通过</span></td><td><span class="badge badge-blue">已报省厅</span></td><td>2026-06-15</td><td><button class="btn-ghost btn-sm">查看</button></td></tr>
+              <tr><td>AP-20260614-002</td><td>YY县</td><td>孙七</td><td>12</td><td>违规排放</td><td><span class="badge badge-green">已通过</span></td><td><span class="badge badge-green">已获取办案号</span></td><td>2026-06-14</td><td><button class="btn btn-success btn-sm" onclick="showModal('modal-distribute')">下发</button><button class="btn-ghost btn-sm" style="margin-left:4px">查看号段</button></td></tr>
+              <tr><td>AP-20260614-001</td><td>XX区</td><td>周八</td><td>20</td><td>占道经营</td><td><span class="badge badge-green">已通过</span></td><td><span class="badge badge-green">已获取办案号</span></td><td>2026-06-14</td><td><button class="btn btn-success btn-sm" onclick="showModal('modal-distribute')">下发</button><button class="btn-ghost btn-sm" style="margin-left:4px">查看号段</button></td></tr>
+              <tr><td>AP-20260613-001</td><td>ZZ区</td><td>吴九</td><td>6</td><td>违章搭建</td><td><span class="badge badge-green">已通过</span></td><td><span class="badge badge-green">已获取办案号</span></td><td>2026-06-13</td><td><span class="badge badge-green" style="font-size:12px">已下发</span> <button class="btn-ghost btn-sm">查看</button></td></tr>
             </tbody>
           </table>
           </div>
@@ -580,6 +588,64 @@ tr:hover td{background:var(--gray-50)}
       </div>
     </div>
     <div class="modal-footer"><button class="btn" onclick="hideModal('modal-apply')">取消</button><button class="btn btn-primary" onclick="hideModal('modal-apply')">提交申请</button></div>
+  </div>
+</div>
+
+<!-- ===== Modal: 报省厅申领 ===== -->
+<div class="modal-overlay" id="modal-report">
+  <div class="modal">
+    <div class="modal-header"><h3>报省厅申领办案号</h3><button class="modal-close" onclick="hideModal('modal-report')">&times;</button></div>
+    <div class="modal-body">
+      <div style="margin-bottom:16px;padding:12px;background:var(--gray-50);border-radius:var(--radius);font-size:13px">
+        <div style="font-weight:600;margin-bottom:6px">申请信息</div>
+        <div>申请编号：AP-20260616-002 | 申请区县：YY县 | 申请人：李四</div>
+        <div>申请数量：5 | 案件类型：违章搭建</div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group full"><div class="form-label">省厅接口</div><input class="form-input" value="省厅办案号管理接口（自动对接）" readonly style="background:var(--gray-50);color:var(--gray-500)"></div>
+        <div class="form-group"><div class="form-label">申领号段起始号</div><input class="form-input" value="系统自动分配" readonly style="background:var(--gray-50);color:var(--gray-500)"></div>
+        <div class="form-group"><div class="form-label">申领数量</div><input class="form-input" type="text" value="5"></div>
+        <div class="form-group full"><div class="form-label">备注</div><textarea class="form-textarea" rows="2" placeholder="补充说明（可选）"></textarea></div>
+      </div>
+      <div style="margin-top:12px;padding:8px 12px;background:#dbeafe;border-radius:4px;font-size:12px;color:#1d4ed8">点击确认后将通过省厅接口统一提交申领请求，省厅返回号段后状态自动更新为"已获取办案号"</div>
+    </div>
+    <div class="modal-footer"><button class="btn" onclick="hideModal('modal-report')">取消</button><button class="btn btn-primary" onclick="hideModal('modal-report')">确认报省厅</button></div>
+  </div>
+</div>
+
+<!-- ===== Modal: 办案号下发 ===== -->
+<div class="modal-overlay" id="modal-distribute">
+  <div class="modal">
+    <div class="modal-header"><h3>办案号下发至区县</h3><button class="modal-close" onclick="hideModal('modal-distribute')">&times;</button></div>
+    <div class="modal-body">
+      <div style="margin-bottom:16px;padding:12px;background:var(--gray-50);border-radius:var(--radius);font-size:13px">
+        <div style="font-weight:600;margin-bottom:6px">申请信息</div>
+        <div>申请编号：AP-20260614-002 | 申请区县：YY县 | 申请人：孙七</div>
+        <div>案件类型：违规排放 | 申请数量：12</div>
+      </div>
+      <div style="margin-bottom:16px">
+        <div class="form-label" style="margin-bottom:8px">省厅返回号段</div>
+        <div style="background:var(--primary-light);border:1px solid var(--primary);border-radius:var(--radius);padding:12px;font-size:13px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="color:var(--gray-500)">号段范围</span><span style="font-weight:600;color:var(--primary)">CG-2026-05801 ~ CG-2026-05812</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">号段数量</span><span style="font-weight:600">12个</span></div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group"><div class="form-label">下发区县 <span class="req">*</span></div><input class="form-input" value="YY县" readonly></div>
+        <div class="form-group"><div class="form-label">下发数量 <span class="req">*</span></div><input class="form-input" type="number" value="12"></div>
+        <div class="form-group full"><div class="form-label">分配明细</div>
+          <table style="font-size:12px;margin-top:4px">
+            <thead><tr><th>序号</th><th>办案号</th><th>分配至</th></tr></thead>
+            <tbody>
+              <tr><td>1-6</td><td>CG-2026-05801 ~ 05806</td><td><input class="form-input" style="height:28px;font-size:12px" value="YY县一大队"></td></tr>
+              <tr><td>7-12</td><td>CG-2026-05807 ~ 05812</td><td><input class="form-input" style="height:28px;font-size:12px" value="YY县二大队"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div style="margin-top:12px;padding:8px 12px;background:#d1fae5;border-radius:4px;font-size:12px;color:#065f46">确认下发后，办案号将推送至对应区县分局账号，区县工作人员即可使用</div>
+    </div>
+    <div class="modal-footer"><button class="btn" onclick="hideModal('modal-distribute')">取消</button><button class="btn btn-success" onclick="hideModal('modal-distribute')">确认下发</button></div>
   </div>
 </div>
 
