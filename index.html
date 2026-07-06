@@ -121,11 +121,13 @@ tr:hover td{background:var(--gray-50)}
 @keyframes aiPulse{0%{transform:scale(1);opacity:.6}70%{transform:scale(1.6);opacity:0}100%{transform:scale(1.6);opacity:0}}
 .ai-float-btn .btn-icon{position:relative;z-index:1;display:flex;align-items:center;justify-content:center}
 /* AI Drawer */
-.ai-drawer{position:absolute;right:24px;bottom:90px;width:400px;max-height:calc(100% - 120px);background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18),0 2px 8px rgba(0,0,0,.08);z-index:39;display:none;flex-direction:column;overflow:hidden}
+.ai-drawer{position:absolute;right:24px;bottom:90px;width:400px;max-height:calc(100% - 120px);background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18),0 2px 8px rgba(0,0,0,.08);z-index:39;display:none;flex-direction:column;overflow:hidden;transition:all .3s ease}
 .ai-drawer.show{display:flex}
+.ai-drawer.expanded{width:880px;max-height:calc(100vh - 160px);right:50%;transform:translateX(50%);bottom:24px}
 .ai-drawer-head{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .ai-drawer-head h4{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
 .ai-drawer-body{padding:16px;overflow-y:auto;flex:1;max-height:520px}
+.ai-drawer.expanded .ai-drawer-body{max-height:calc(100vh - 260px)}
 .ai-drawer-close{background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
 .ai-drawer-close:hover{color:#fff}
 .ai-drawer .mini-disc{font-size:12px;line-height:1.6}
@@ -147,9 +149,43 @@ tr:hover td{background:var(--gray-50)}
 .ai-drawer .mini-sug .sl.heavy{background:#fee2e2;color:#991b1b}
 .ai-drawer .mini-sug .st{font-size:11px;color:var(--gray-700);flex:1}
 .ai-drawer .mini-sug.rec .st{font-weight:600;color:var(--gray-900)}
-.ai-drawer .section-title{font-size:12px;font-weight:600;color:var(--gray-700);margin:10px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--gray-100)}
+.ai-drawer .section-title{font-size:12px;font-weight:600;color:var(--gray-700);margin:10px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between}
 .ai-drawer .section-title:first-child{margin-top:0}
 .ai-drawer-foot{padding:10px 16px;border-top:1px solid var(--gray-200);display:flex;gap:8px;justify-content:flex-end;flex-shrink:0}
+/* Case Selector in Drawer */
+.ai-case-sel{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:10px 12px;background:var(--gray-50);border-radius:8px;border:1px solid var(--gray-200)}
+.ai-case-sel label{font-size:12px;font-weight:600;color:var(--gray-700);white-space:nowrap}
+.ai-case-sel select{flex:1;padding:6px 10px;border:1px solid var(--gray-300);border-radius:6px;font-size:12px;outline:none;background:#fff;cursor:pointer}
+.ai-case-sel select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,.1)}
+/* Copy Button */
+.copy-btn{display:inline-flex;align-items:center;gap:3px;background:none;border:1px solid var(--gray-300);color:var(--gray-500);font-size:11px;padding:2px 8px;border-radius:4px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.copy-btn:hover{color:var(--primary);border-color:var(--primary)}
+.copy-btn.copied{color:var(--success);border-color:var(--success)}
+/* Expanded Full Content in Drawer */
+.ai-drawer .full-section{display:none}
+.ai-drawer.expanded .full-section{display:block}
+.ai-drawer .compact-only{display:block}
+.ai-drawer.expanded .compact-only{display:none}
+.ai-drawer .full-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ai-drawer .full-card{border:1px solid var(--gray-200);border-radius:8px;overflow:hidden}
+.ai-drawer .full-card-head{padding:10px 14px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;background:var(--gray-50)}
+.ai-drawer .full-card-head h5{font-size:13px;font-weight:600;color:var(--gray-900)}
+.ai-drawer .full-card-body{padding:12px 14px;font-size:12px}
+.ai-drawer .disc-opt{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--gray-100)}
+.ai-drawer .disc-opt:last-child{border-bottom:none}
+.ai-drawer .disc-opt .dl{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500;flex-shrink:0}
+.ai-drawer .disc-opt .dl.light{background:#d1fae5;color:#065f46}
+.ai-drawer .disc-opt .dl.normal{background:#fef3c7;color:#92400e}
+.ai-drawer .disc-opt .dl.heavy{background:#fee2e2;color:#991b1b}
+.ai-drawer .disc-opt .dr{flex:1;color:var(--gray-700)}
+.ai-drawer .disc-opt.rec .dr{font-weight:600;color:var(--gray-900)}
+.ai-drawer .reg-item{display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--gray-100);align-items:flex-start}
+.ai-drawer .reg-item:last-child{border-bottom:none}
+.ai-drawer .reg-item .rr{width:22px;height:22px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
+.ai-drawer .reg-item .rc{flex:1}
+.ai-drawer .reg-item .rt{font-size:12px;font-weight:600;color:var(--gray-900);margin-bottom:2px}
+.ai-drawer .reg-item .rd{font-size:11px;color:var(--gray-500);line-height:1.5}
+.ai-drawer .reg-item .rm{font-size:11px;color:var(--primary);font-weight:500}
 /* History Cards */
 .ai-hist-card{background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--gray-200);margin-bottom:8px;transition:all .15s}
 .ai-hist-card:hover{border-color:#c4b5fd}
@@ -658,35 +694,107 @@ tr:hover td{background:var(--gray-50)}
       <div class="ai-drawer" id="ai-drawer">
         <div class="ai-drawer-head"><h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg> AI执法小助手</h4><button class="ai-drawer-close" onclick="toggleAiDrawer()">&times;</button></div>
         <div class="ai-drawer-body">
-          <div class="section-title">案件研判概要</div>
-          <div class="mini-disc">
-            <div class="row"><span class="lbl">办案号</span><span class="val">CG-2026-001285</span></div>
-            <div class="row"><span class="lbl">当事人</span><span class="val"><b>李某某</b>（3210****2815）</span></div>
-            <div class="row"><span class="lbl">违法类型</span><span class="val"><span class="ai-tag ai-tag-purple">违章搭建</span></span></div>
-            <div class="row"><span class="lbl">情节标签</span><span class="val"><span class="ai-tag ai-tag-orange">一般</span> <span class="ai-tag ai-tag-red">二次违法</span> <span class="ai-tag ai-tag-orange">未整改</span></span></div>
+          <!-- 案件选择器 -->
+          <div class="ai-case-sel">
+            <label>当前案件：</label>
+            <select id="ai-case-select" onchange="switchAiCase(this.value)">
+              <option value="CG-2026-001285" selected>CG-2026-001285 | 李某某 | 违章搭建</option>
+              <option value="CG-2026-001283">CG-2026-001283 | 陈某某 | 噪音扰民</option>
+              <option value="CG-2026-001276">CG-2026-001276 | 某公司 | 违章搭建</option>
+              <option value="CG-2026-001260">CG-2026-001260 | 某饭店 | 违规排放</option>
+            </select>
           </div>
-          <div class="mini-alert"><span class="ic">&#9888;&#65039;</span><div><div class="t">重复违法预警</div><div class="d">当事人<b>李某某</b>在同类违法类型（违章搭建）中存在1条过往涉案记录，属于重复违法，建议从重裁量。</div></div></div>
-          <div class="section-title">同类型过往案件</div>
-          <div class="mini-law" style="border-left:3px solid var(--danger);background:#fef8f8">
-            <div class="lk">违章搭建（钢架棚）<span class="ai-tag ai-tag-red" style="margin-left:4px">重复违法</span></div>
-            <div class="lv">责令限期拆除 + 罚款1,200元</div>
-            <div style="font-size:11px;color:var(--gray-500);margin-top:2px">XX区城管执法大队 · 王执法（CG0056） · 2025-11-08</div>
+
+          <!-- ===== 精简模式内容（默认） ===== -->
+          <div class="compact-only" id="drawer-compact">
+            <div class="section-title">案件研判概要</div>
+            <div class="mini-disc" id="compact-disc">
+              <div class="row"><span class="lbl">办案号</span><span class="val" data-field="caseNo">CG-2026-001285</span></div>
+              <div class="row"><span class="lbl">当事人</span><span class="val" data-field="person"><b>李某某</b>（3210****2815）</span></div>
+              <div class="row"><span class="lbl">违法类型</span><span class="val" data-field="type"><span class="ai-tag ai-tag-purple">违章搭建</span></span></div>
+              <div class="row"><span class="lbl">情节标签</span><span class="val" data-field="tags"><span class="ai-tag ai-tag-orange">一般</span> <span class="ai-tag ai-tag-red">二次违法</span> <span class="ai-tag ai-tag-orange">未整改</span></span></div>
+            </div>
+            <div class="mini-alert" id="compact-alert"><span class="ic">&#9888;&#65039;</span><div><div class="t">重复违法预警</div><div class="d" data-field="alertDesc">当事人<b>李某某</b>在同类违法类型（违章搭建）中存在1条过往涉案记录，属于重复违法，建议从重裁量。</div></div></div>
+            <div class="section-title">同类型过往案件</div>
+            <div class="mini-law" style="border-left:3px solid var(--danger);background:#fef8f8" id="compact-hist">
+              <div class="lk">违章搭建（钢架棚）<span class="ai-tag ai-tag-red" style="margin-left:4px">重复违法</span></div>
+              <div class="lv">责令限期拆除 + 罚款1,200元</div>
+              <div style="font-size:11px;color:var(--gray-500);margin-top:2px">XX区城管执法大队 · 王执法（CG0056） · 2025-11-08</div>
+            </div>
+            <div class="section-title">AI量刑参考</div>
+            <div id="compact-sug">
+              <div class="mini-sug"><span class="sl light">从轻</span><span class="st">责令限期拆除 / 罚款工程造价5%以下</span></div>
+              <div class="mini-sug rec"><span class="sl normal">一般 &#10148;</span><span class="st">责令限期拆除 / 罚款工程造价5%-8%（二次违法且未整改）</span></div>
+              <div class="mini-sug"><span class="sl heavy">从重</span><span class="st">责令限期拆除 / 罚款工程造价8%-10%</span></div>
+            </div>
+            <div class="section-title">适用法规依据 <button class="copy-btn" onclick="copySection('compact-law')">&#128203; 复制</button></div>
+            <div id="compact-law">
+              <div class="mini-law">
+                <div class="lk"><span class="ai-tag ai-tag-green" style="margin-right:4px">97%</span>《城乡规划法》第六十四条</div>
+                <div class="lv">未取得建设工程规划许可证的，责令停止建设、限期拆除，可处工程造价10%以下罚款。</div>
+              </div>
+              <div class="mini-law">
+                <div class="lk"><span class="ai-tag ai-tag-blue" style="margin-right:4px">85%</span>《行政强制法》第四十四条</div>
+                <div class="lv">对违法的建筑物需要强制拆除的，应公告并限期当事人自行拆除。</div>
+              </div>
+            </div>
           </div>
-          <div class="section-title">AI量刑参考</div>
-          <div class="mini-sug"><span class="sl light">从轻</span><span class="st">责令限期拆除 / 罚款工程造价5%以下</span></div>
-          <div class="mini-sug rec"><span class="sl normal">一般 &#10148;</span><span class="st">责令限期拆除 / 罚款工程造价5%-8%（二次违法且未整改）</span></div>
-          <div class="mini-sug"><span class="sl heavy">从重</span><span class="st">责令限期拆除 / 罚款工程造价8%-10%</span></div>
-          <div class="section-title">适用法规依据</div>
-          <div class="mini-law">
-            <div class="lk"><span class="ai-tag ai-tag-green" style="margin-right:4px">97%</span>《城乡规划法》第六十四条</div>
-            <div class="lv">未取得建设工程规划许可证的，责令停止建设、限期拆除，可处工程造价10%以下罚款。</div>
-          </div>
-          <div class="mini-law">
-            <div class="lk"><span class="ai-tag ai-tag-blue" style="margin-right:4px">85%</span>《行政强制法》第四十四条</div>
-            <div class="lv">对违法的建筑物需要强制拆除的，应公告并限期当事人自行拆除。</div>
+
+          <!-- ===== 放大模式内容（点击"查看完整研判"后展示） ===== -->
+          <div class="full-section" id="drawer-full">
+            <div class="full-grid">
+              <!-- 左列：研判概要 + 过往案件 + 量刑参考 -->
+              <div>
+                <div class="section-title">案件研判概要 <button class="copy-btn" onclick="copySection('full-disc')">&#128203; 复制</button></div>
+                <div class="mini-disc" id="full-disc">
+                  <div class="row"><span class="lbl">办案号</span><span class="val" data-field="caseNo">CG-2026-001285</span></div>
+                  <div class="row"><span class="lbl">当事人</span><span class="val" data-field="person"><b>李某某</b>（3210****2815）</span></div>
+                  <div class="row"><span class="lbl">违法类型</span><span class="val" data-field="type"><span class="ai-tag ai-tag-purple">违章搭建</span></span></div>
+                  <div class="row"><span class="lbl">情节标签</span><span class="val" data-field="tags"><span class="ai-tag ai-tag-orange">一般</span> <span class="ai-tag ai-tag-red">二次违法</span> <span class="ai-tag ai-tag-orange">未整改</span></span></div>
+                </div>
+                <div class="mini-alert" id="full-alert"><span class="ic">&#9888;&#65039;</span><div><div class="t">重复违法预警</div><div class="d" data-field="alertDesc">当事人<b>李某某</b>在同类违法类型（违章搭建）中存在1条过往涉案记录，属于重复违法，建议从重裁量。</div></div></div>
+                <div class="section-title">同类型过往案件</div>
+                <div id="full-hist">
+                  <div class="mini-law" style="border-left:3px solid var(--danger);background:#fef8f8">
+                    <div class="lk">违章搭建（钢架棚）<span class="ai-tag ai-tag-red" style="margin-left:4px">重复违法</span></div>
+                    <div class="lv">责令限期拆除 + 罚款1,200元</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:2px">XX区城管执法大队 · 王执法（CG0056） · 2025-11-08</div>
+                  </div>
+                </div>
+                <div class="section-title">AI量刑参考 <button class="copy-btn" onclick="copySection('full-sug')">&#128203; 复制</button></div>
+                <div id="full-sug">
+                  <div class="mini-sug"><span class="sl light">从轻</span><span class="st">责令限期拆除 / 罚款工程造价5%以下</span></div>
+                  <div class="mini-sug rec"><span class="sl normal">一般 &#10148;</span><span class="st">责令限期拆除 / 罚款工程造价5%-8%（二次违法且未整改）</span></div>
+                  <div class="mini-sug"><span class="sl heavy">从重</span><span class="st">责令限期拆除 / 罚款工程造价8%-10%</span></div>
+                </div>
+              </div>
+              <!-- 右列：法规匹配 + 裁量建议 -->
+              <div>
+                <div class="section-title">法规匹配结果 <button class="copy-btn" onclick="copySection('full-law')">&#128203; 复制</button></div>
+                <div id="full-law">
+                  <div class="reg-item"><div class="rr">1</div><div class="rc"><div class="rt">《城乡规划法》第六十四条 <span class="ai-tag ai-tag-green" style="margin-left:4px">97%</span></div><div class="rd">未取得建设工程规划许可证的，责令停止建设、限期拆除，可处工程造价10%以下罚款。</div></div></div>
+                  <div class="reg-item"><div class="rr">2</div><div class="rc"><div class="rt">《行政强制法》第四十四条 <span class="ai-tag ai-tag-blue" style="margin-left:4px">85%</span></div><div class="rd">对违法的建筑物需要强制拆除的，应公告并限期当事人自行拆除。</div></div></div>
+                  <div class="reg-item"><div class="rr">3</div><div class="rc"><div class="rt">《XX市城市管理条例》第五十八条 <span class="ai-tag ai-tag-blue" style="margin-left:4px">78%</span></div><div class="rd">未取得建设工程规划许可证进行建设的，责令停止建设、限期拆除，可处工程造价5%-10%罚款。</div></div></div>
+                </div>
+                <div class="section-title" style="margin-top:14px">裁量建议 <button class="copy-btn" onclick="copySection('full-disc-sug')">&#128203; 复制</button></div>
+                <div id="full-disc-sug">
+                  <div class="disc-opt"><div class="dl light">从轻</div><div class="dr">责令限期拆除 / 罚款工程造价5%以下</div></div>
+                  <div class="disc-opt rec"><div class="dl normal">一般 &#10148;</div><div class="dr">责令限期拆除 / 罚款工程造价5%-8%</div></div>
+                  <div class="disc-opt"><div class="dl heavy">从重</div><div class="dr">责令限期拆除 / 罚款工程造价8%-10%</div></div>
+                  <div style="margin-top:8px;font-size:12px;color:var(--gray-500)">裁量说明：当事人属二次违法且未整改，建议按一般幅度裁量</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="ai-drawer-foot"><button class="btn btn-sm" onclick="toggleAiDrawer()">关闭</button><button class="btn btn-sm btn-primary" onclick="document.getElementById('match-result').style.display='block';document.getElementById('ai-disc-result').style.display='block';toggleAiDrawer()">查看完整研判</button></div>
+        <div class="ai-drawer-foot" id="drawer-foot-compact">
+          <button class="btn btn-sm" onclick="toggleAiDrawer()">关闭</button>
+          <button class="btn btn-sm btn-primary" onclick="expandAiDrawer()">查看完整研判</button>
+        </div>
+        <div class="ai-drawer-foot" id="drawer-foot-expanded" style="display:none">
+          <button class="btn btn-sm" onclick="collapseAiDrawer()">收起</button>
+          <button class="btn btn-sm btn-primary" onclick="alert('裁量建议已提交，流程流转至法制审核节点')">提交至法制审核</button>
+        </div>
       </div>
     </div>
 
@@ -1319,7 +1427,79 @@ function switchReviewTab(el,tabId){
 // AI执法小助手 - 抽屉弹窗切换
 function toggleAiDrawer(){
   const d=document.getElementById('ai-drawer');
+  if(!d.classList.contains('show')){
+    d.classList.remove('expanded');
+    document.getElementById('drawer-foot-compact').style.display='';
+    document.getElementById('drawer-foot-expanded').style.display='none';
+  }
   d.classList.toggle('show');
+}
+
+// 案件数据
+const caseData={
+  'CG-2026-001285':{caseNo:'CG-2026-001285',person:'<b>李某某</b>（3210****2815）',type:'<span class="ai-tag ai-tag-purple">违章搭建</span>',tags:'<span class="ai-tag ai-tag-orange">一般</span> <span class="ai-tag ai-tag-red">二次违法</span> <span class="ai-tag ai-tag-orange">未整改</span>',alertDesc:'当事人<b>李某某</b>在同类违法类型（违章搭建）中存在1条过往涉案记录，属于重复违法，建议从重裁量。',hasAlert:true,hist:'<div class="mini-law" style="border-left:3px solid var(--danger);background:#fef8f8"><div class="lk">违章搭建（钢架棚）<span class="ai-tag ai-tag-red" style="margin-left:4px">重复违法</span></div><div class="lv">责令限期拆除 + 罚款1,200元</div><div style="font-size:11px;color:var(--gray-500);margin-top:2px">XX区城管执法大队 · 王执法（CG0056） · 2025-11-08</div></div>',sug:'<div class="mini-sug"><span class="sl light">从轻</span><span class="st">责令限期拆除 / 罚款工程造价5%以下</span></div><div class="mini-sug rec"><span class="sl normal">一般 &#10148;</span><span class="st">责令限期拆除 / 罚款工程造价5%-8%（二次违法且未整改）</span></div><div class="mini-sug"><span class="sl heavy">从重</span><span class="st">责令限期拆除 / 罚款工程造价8%-10%</span></div>',law:'<div class="mini-law"><div class="lk"><span class="ai-tag ai-tag-green" style="margin-right:4px">97%</span>《城乡规划法》第六十四条</div><div class="lv">未取得建设工程规划许可证的，责令停止建设、限期拆除，可处工程造价10%以下罚款。</div></div><div class="mini-law"><div class="lk"><span class="ai-tag ai-tag-blue" style="margin-right:4px">85%</span>《行政强制法》第四十四条</div><div class="lv">对违法的建筑物需要强制拆除的，应公告并限期当事人自行拆除。</div></div>',fullLaw:'<div class="reg-item"><div class="rr">1</div><div class="rc"><div class="rt">《城乡规划法》第六十四条 <span class="ai-tag ai-tag-green" style="margin-left:4px">97%</span></div><div class="rd">未取得建设工程规划许可证的，责令停止建设、限期拆除，可处工程造价10%以下罚款。</div></div></div><div class="reg-item"><div class="rr">2</div><div class="rc"><div class="rt">《行政强制法》第四十四条 <span class="ai-tag ai-tag-blue" style="margin-left:4px">85%</span></div><div class="rd">对违法的建筑物需要强制拆除的，应公告并限期当事人自行拆除。</div></div></div><div class="reg-item"><div class="rr">3</div><div class="rc"><div class="rt">《XX市城市管理条例》第五十八条 <span class="ai-tag ai-tag-blue" style="margin-left:4px">78%</span></div><div class="rd">未取得建设工程规划许可证进行建设的，责令停止建设、限期拆除，可处工程造价5%-10%罚款。</div></div></div>',discSug:'<div class="disc-opt"><div class="dl light">从轻</div><div class="dr">责令限期拆除 / 罚款工程造价5%以下</div></div><div class="disc-opt rec"><div class="dl normal">一般 &#10148;</div><div class="dr">责令限期拆除 / 罚款工程造价5%-8%</div></div><div class="disc-opt"><div class="dl heavy">从重</div><div class="dr">责令限期拆除 / 罚款工程造价8%-10%</div></div><div style="margin-top:8px;font-size:12px;color:var(--gray-500)">裁量说明：当事人属二次违法且未整改，建议按一般幅度裁量</div>'},
+  'CG-2026-001283':{caseNo:'CG-2026-001283',person:'<b>陈某某</b>（3210****5678）',type:'<span class="ai-tag ai-tag-orange">噪音扰民</span>',tags:'<span class="ai-tag ai-tag-orange">一般</span> <span class="ai-tag ai-tag-green">首次违法</span>',alertDesc:'当事人<b>陈某某</b>无同类型过往涉案记录。',hasAlert:false,hist:'<div style="font-size:11px;color:var(--gray-500);padding:8px 0">暂无同类型过往案件</div>',sug:'<div class="mini-sug"><span class="sl light">从轻</span><span class="st">警告教育</span></div><div class="mini-sug rec"><span class="sl normal">一般 &#10148;</span><span class="st">罚款500-2000元</span></div><div class="mini-sug"><span class="sl heavy">从重</span><span class="st">罚款2000-5000元</span></div>',law:'<div class="mini-law"><div class="lk"><span class="ai-tag ai-tag-green" style="margin-right:4px">92%</span>《噪声污染防治法》第六十六条</div><div class="lv">社会生活噪声超标，可处警告或罚款。</div></div>',fullLaw:'<div class="reg-item"><div class="rr">1</div><div class="rc"><div class="rt">《噪声污染防治法》第六十六条 <span class="ai-tag ai-tag-green" style="margin-left:4px">92%</span></div><div class="rd">社会生活噪声超标，可处警告或罚款。</div></div></div>',discSug:'<div class="disc-opt"><div class="dl light">从轻</div><div class="dr">警告教育</div></div><div class="disc-opt rec"><div class="dl normal">一般 &#10148;</div><div class="dr">罚款500-2000元</div></div><div class="disc-opt"><div class="dl heavy">从重</div><div class="dr">罚款2000-5000元</div></div><div style="margin-top:8px;font-size:12px;color:var(--gray-500)">裁量说明：首次违法，建议按一般幅度裁量</div>'},
+  'CG-2026-001276':{caseNo:'CG-2026-001276',person:'<b>某公司</b>（9132****0123）',type:'<span class="ai-tag ai-tag-purple">违章搭建</span>',tags:'<span class="ai-tag ai-tag-red">严重</span> <span class="ai-tag ai-tag-red">三次违法</span> <span class="ai-tag ai-tag-orange">未整改</span>',alertDesc:'当事人<b>某公司</b>在同类违法类型（违章搭建）中存在2条过往涉案记录，属多次重复违法，建议从重裁量。',hasAlert:true,hist:'<div class="mini-law" style="border-left:3px solid var(--danger);background:#fef8f8"><div class="lk">违章搭建（扩建厂房）<span class="ai-tag ai-tag-red" style="margin-left:4px">重复违法</span></div><div class="lv">责令限期拆除 + 罚款8,000元</div><div style="font-size:11px;color:var(--gray-500);margin-top:2px">YY区城管执法大队 · 赵执法（CG0021） · 2025-09-15</div></div><div class="mini-law" style="border-left:3px solid var(--danger);background:#fef8f8"><div class="lk">违章搭建（临时棚房）<span class="ai-tag ai-tag-red" style="margin-left:4px">重复违法</span></div><div class="lv">责令限期拆除 + 罚款5,000元</div><div style="font-size:11px;color:var(--gray-500);margin-top:2px">YY区城管执法大队 · 赵执法（CG0021） · 2025-06-20</div></div>',sug:'<div class="mini-sug"><span class="sl light">从轻</span><span class="st">责令限期拆除 / 罚款工程造价5%以下</span></div><div class="mini-sug"><span class="sl normal">一般</span><span class="st">责令限期拆除 / 罚款工程造价5%-8%</span></div><div class="mini-sug rec"><span class="sl heavy">从重 &#10148;</span><span class="st">责令限期拆除 / 罚款工程造价8%-10%（三次违法且未整改）</span></div>',law:'<div class="mini-law"><div class="lk"><span class="ai-tag ai-tag-green" style="margin-right:4px">97%</span>《城乡规划法》第六十四条</div><div class="lv">未取得建设工程规划许可证的，责令停止建设、限期拆除，可处工程造价10%以下罚款。</div></div><div class="mini-law"><div class="lk"><span class="ai-tag ai-tag-blue" style="margin-right:4px">85%</span>《行政强制法》第四十四条</div><div class="lv">对违法的建筑物需要强制拆除的，应公告并限期当事人自行拆除。</div></div>',fullLaw:'<div class="reg-item"><div class="rr">1</div><div class="rc"><div class="rt">《城乡规划法》第六十四条 <span class="ai-tag ai-tag-green" style="margin-left:4px">97%</span></div><div class="rd">未取得建设工程规划许可证的，责令停止建设、限期拆除，可处工程造价10%以下罚款。</div></div></div><div class="reg-item"><div class="rr">2</div><div class="rc"><div class="rt">《行政强制法》第四十四条 <span class="ai-tag ai-tag-blue" style="margin-left:4px">85%</span></div><div class="rd">对违法的建筑物需要强制拆除的，应公告并限期当事人自行拆除。</div></div></div>',discSug:'<div class="disc-opt"><div class="dl light">从轻</div><div class="dr">责令限期拆除 / 罚款工程造价5%以下</div></div><div class="disc-opt"><div class="dl normal">一般</div><div class="dr">责令限期拆除 / 罚款工程造价5%-8%</div></div><div class="disc-opt rec"><div class="dl heavy">从重 &#10148;</div><div class="dr">责令限期拆除 / 罚款工程造价8%-10%</div></div><div style="margin-top:8px;font-size:12px;color:var(--gray-500)">裁量说明：三次违法且未整改，建议按从重幅度裁量</div>'},
+  'CG-2026-001260':{caseNo:'CG-2026-001260',person:'<b>某饭店</b>（9132****8899）',type:'<span class="ai-tag ai-tag-red">违规排放</span>',tags:'<span class="ai-tag ai-tag-orange">一般</span> <span class="ai-tag ai-tag-orange">部分整改</span>',alertDesc:'当事人<b>某饭店</b>无同类型过往涉案记录。',hasAlert:false,hist:'<div style="font-size:11px;color:var(--gray-500);padding:8px 0">暂无同类型过往案件</div>',sug:'<div class="mini-sug"><span class="sl light">从轻</span><span class="st">警告 / 罚款2000-3000元</span></div><div class="mini-sug rec"><span class="sl normal">一般 &#10148;</span><span class="st">罚款3000-5000元</span></div><div class="mini-sug"><span class="sl heavy">从重</span><span class="st">罚款5000-10000元</span></div>',law:'<div class="mini-law"><div class="lk"><span class="ai-tag ai-tag-green" style="margin-right:4px">95%</span>《大气污染防治法》第一百一十八条</div><div class="lv">排放油烟超标，可处罚款；拒不改正的，责令停业整治。</div></div>',fullLaw:'<div class="reg-item"><div class="rr">1</div><div class="rc"><div class="rt">《大气污染防治法》第一百一十八条 <span class="ai-tag ai-tag-green" style="margin-left:4px">95%</span></div><div class="rd">排放油烟超标，可处罚款；拒不改正的，责令停业整治。</div></div></div>',discSug:'<div class="disc-opt"><div class="dl light">从轻</div><div class="dr">警告 / 罚款2000-3000元</div></div><div class="disc-opt rec"><div class="dl normal">一般 &#10148;</div><div class="dr">罚款3000-5000元</div></div><div class="disc-opt"><div class="dl heavy">从重</div><div class="dr">罚款5000-10000元</div></div><div style="margin-top:8px;font-size:12px;color:var(--gray-500)">裁量说明：部分整改，建议按一般幅度裁量</div>'}
+};
+
+// 切换案件
+function switchAiCase(caseId){
+  const c=caseData[caseId];if(!c)return;
+  // 更新精简模式
+  const cd=document.getElementById('compact-disc');
+  cd.querySelector('[data-field="caseNo"]').textContent=c.caseNo;
+  cd.querySelector('[data-field="person"]').innerHTML=c.person;
+  cd.querySelector('[data-field="type"]').innerHTML=c.type;
+  cd.querySelector('[data-field="tags"]').innerHTML=c.tags;
+  const ca=document.getElementById('compact-alert');
+  if(c.hasAlert){ca.style.display='';ca.querySelector('[data-field="alertDesc"]').innerHTML=c.alertDesc;}
+  else{ca.style.display='none';}
+  document.getElementById('compact-hist').innerHTML=c.hist;
+  document.getElementById('compact-sug').innerHTML=c.sug;
+  document.getElementById('compact-law').innerHTML=c.law;
+  // 更新放大模式
+  const fd=document.getElementById('full-disc');
+  fd.querySelector('[data-field="caseNo"]').textContent=c.caseNo;
+  fd.querySelector('[data-field="person"]').innerHTML=c.person;
+  fd.querySelector('[data-field="type"]').innerHTML=c.type;
+  fd.querySelector('[data-field="tags"]').innerHTML=c.tags;
+  const fa=document.getElementById('full-alert');
+  if(c.hasAlert){fa.style.display='';fa.querySelector('[data-field="alertDesc"]').innerHTML=c.alertDesc;}
+  else{fa.style.display='none';}
+  document.getElementById('full-hist').innerHTML=c.hist;
+  document.getElementById('full-sug').innerHTML=c.sug;
+  document.getElementById('full-law').innerHTML=c.fullLaw;
+  document.getElementById('full-disc-sug').innerHTML=c.discSug;
+}
+
+// 放大抽屉
+function expandAiDrawer(){
+  const d=document.getElementById('ai-drawer');
+  d.classList.add('expanded');
+  document.getElementById('drawer-foot-compact').style.display='none';
+  document.getElementById('drawer-foot-expanded').style.display='';
+}
+
+// 收起抽屉
+function collapseAiDrawer(){
+  const d=document.getElementById('ai-drawer');
+  d.classList.remove('expanded');
+  document.getElementById('drawer-foot-compact').style.display='';
+  document.getElementById('drawer-foot-expanded').style.display='none';
+}
+
+// 一键复制
+function copySection(sectionId){
+  const el=document.getElementById(sectionId);if(!el)return;
+  const text=el.innerText||el.textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=el.previousElementSibling?.querySelector('.copy-btn')||el.closest('.section-title')?.querySelector('.copy-btn');
+    if(btn){btn.classList.add('copied');btn.innerHTML='&#10003; 已复制';setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='&#128203; 复制';},1500);}
+  }).catch(()=>{
+    // fallback
+    const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+  });
 }
 </script>
 </body>
