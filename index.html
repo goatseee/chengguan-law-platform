@@ -114,6 +114,42 @@ tr:hover td{background:var(--gray-50)}
 .ai-repeat-alert .alert-icon{font-size:18px;flex-shrink:0}
 .ai-repeat-alert .alert-title{font-size:12px;font-weight:600;color:var(--danger);margin-bottom:2px}
 .ai-repeat-alert .alert-desc{font-size:11px;color:#7f1d1d;line-height:1.5}
+/* AI Floating Assistant (within discretion page) */
+.ai-float-btn{position:absolute;right:24px;bottom:24px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(99,102,241,.45);z-index:40;transition:all .25s;border:none;font-size:22px}
+.ai-float-btn:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(99,102,241,.55)}
+.ai-float-btn .pulse{position:absolute;width:100%;height:100%;border-radius:50%;background:rgba(99,102,241,.3);animation:aiPulse 2s infinite}
+@keyframes aiPulse{0%{transform:scale(1);opacity:.6}70%{transform:scale(1.6);opacity:0}100%{transform:scale(1.6);opacity:0}}
+.ai-float-btn .btn-icon{position:relative;z-index:1;display:flex;align-items:center;justify-content:center}
+/* AI Drawer */
+.ai-drawer{position:absolute;right:24px;bottom:90px;width:400px;max-height:calc(100% - 120px);background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18),0 2px 8px rgba(0,0,0,.08);z-index:39;display:none;flex-direction:column;overflow:hidden}
+.ai-drawer.show{display:flex}
+.ai-drawer-head{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ai-drawer-head h4{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+.ai-drawer-body{padding:16px;overflow-y:auto;flex:1;max-height:520px}
+.ai-drawer-close{background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
+.ai-drawer-close:hover{color:#fff}
+.ai-drawer .mini-disc{font-size:12px;line-height:1.6}
+.ai-drawer .mini-disc .row{display:flex;gap:4px;margin-bottom:4px}
+.ai-drawer .mini-disc .lbl{color:var(--gray-500);min-width:56px;flex-shrink:0}
+.ai-drawer .mini-disc .val{color:var(--gray-900);flex:1}
+.ai-drawer .mini-alert{background:linear-gradient(135deg,#fef2f2,#fff5f5);border:1px solid #fecaca;border-radius:6px;padding:8px 10px;margin:10px 0;display:flex;gap:6px;align-items:flex-start;font-size:11px;line-height:1.5}
+.ai-drawer .mini-alert .ic{font-size:14px;flex-shrink:0}
+.ai-drawer .mini-alert .t{font-weight:600;color:var(--danger);margin-bottom:1px}
+.ai-drawer .mini-alert .d{color:#7f1d1d}
+.ai-drawer .mini-law{background:#f8fafc;border:1px solid var(--gray-200);border-radius:6px;padding:8px 10px;margin-bottom:6px}
+.ai-drawer .mini-law .lk{font-size:11px;color:var(--gray-500);margin-bottom:2px}
+.ai-drawer .mini-law .lv{font-size:12px;color:var(--gray-900);font-weight:500}
+.ai-drawer .mini-sug{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--gray-100)}
+.ai-drawer .mini-sug:last-child{border-bottom:none}
+.ai-drawer .mini-sug .sl{font-size:11px;padding:2px 8px;border-radius:4px;flex-shrink:0;font-weight:500}
+.ai-drawer .mini-sug .sl.light{background:#d1fae5;color:#065f46}
+.ai-drawer .mini-sug .sl.normal{background:#fef3c7;color:#92400e}
+.ai-drawer .mini-sug .sl.heavy{background:#fee2e2;color:#991b1b}
+.ai-drawer .mini-sug .st{font-size:11px;color:var(--gray-700);flex:1}
+.ai-drawer .mini-sug.rec .st{font-weight:600;color:var(--gray-900)}
+.ai-drawer .section-title{font-size:12px;font-weight:600;color:var(--gray-700);margin:10px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--gray-100)}
+.ai-drawer .section-title:first-child{margin-top:0}
+.ai-drawer-foot{padding:10px 16px;border-top:1px solid var(--gray-200);display:flex;gap:8px;justify-content:flex-end;flex-shrink:0}
 /* History Cards */
 .ai-hist-card{background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--gray-200);margin-bottom:8px;transition:all .15s}
 .ai-hist-card:hover{border-color:#c4b5fd}
@@ -456,7 +492,7 @@ tr:hover td{background:var(--gray-50)}
     </div>
 
     <!-- ===== 自由裁量 ===== -->
-    <div class="page" id="page-discretion">
+    <div class="page" id="page-discretion" style="position:relative">
       <!-- 审批流程上下文 -->
       <div class="panel" style="margin-bottom:20px">
         <div class="panel-header"><h3>案件审批流程 - 裁量环节</h3><span style="font-size:12px;color:var(--gray-500)">当前案件：CG-2026-001285 | 李某某 | 违章搭建</span></div>
@@ -616,6 +652,41 @@ tr:hover td{background:var(--gray-50)}
             </div>
           </div>
         </div>
+      </div>
+      <!-- AI执法小助手 - 悬浮图标 + 抽屉弹窗 -->
+      <button class="ai-float-btn" onclick="toggleAiDrawer()" title="AI执法小助手"><span class="pulse"></span><span class="btn-icon">&#9733;</span></button>
+      <div class="ai-drawer" id="ai-drawer">
+        <div class="ai-drawer-head"><h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg> AI执法小助手</h4><button class="ai-drawer-close" onclick="toggleAiDrawer()">&times;</button></div>
+        <div class="ai-drawer-body">
+          <div class="section-title">案件研判概要</div>
+          <div class="mini-disc">
+            <div class="row"><span class="lbl">办案号</span><span class="val">CG-2026-001285</span></div>
+            <div class="row"><span class="lbl">当事人</span><span class="val"><b>李某某</b>（3210****2815）</span></div>
+            <div class="row"><span class="lbl">违法类型</span><span class="val"><span class="ai-tag ai-tag-purple">违章搭建</span></span></div>
+            <div class="row"><span class="lbl">情节标签</span><span class="val"><span class="ai-tag ai-tag-orange">一般</span> <span class="ai-tag ai-tag-red">二次违法</span> <span class="ai-tag ai-tag-orange">未整改</span></span></div>
+          </div>
+          <div class="mini-alert"><span class="ic">&#9888;&#65039;</span><div><div class="t">重复违法预警</div><div class="d">当事人<b>李某某</b>在同类违法类型（违章搭建）中存在1条过往涉案记录，属于重复违法，建议从重裁量。</div></div></div>
+          <div class="section-title">同类型过往案件</div>
+          <div class="mini-law" style="border-left:3px solid var(--danger);background:#fef8f8">
+            <div class="lk">违章搭建（钢架棚）<span class="ai-tag ai-tag-red" style="margin-left:4px">重复违法</span></div>
+            <div class="lv">责令限期拆除 + 罚款1,200元</div>
+            <div style="font-size:11px;color:var(--gray-500);margin-top:2px">XX区城管执法大队 · 王执法（CG0056） · 2025-11-08</div>
+          </div>
+          <div class="section-title">AI量刑参考</div>
+          <div class="mini-sug"><span class="sl light">从轻</span><span class="st">责令限期拆除 / 罚款工程造价5%以下</span></div>
+          <div class="mini-sug rec"><span class="sl normal">一般 &#10148;</span><span class="st">责令限期拆除 / 罚款工程造价5%-8%（二次违法且未整改）</span></div>
+          <div class="mini-sug"><span class="sl heavy">从重</span><span class="st">责令限期拆除 / 罚款工程造价8%-10%</span></div>
+          <div class="section-title">适用法规依据</div>
+          <div class="mini-law">
+            <div class="lk"><span class="ai-tag ai-tag-green" style="margin-right:4px">97%</span>《城乡规划法》第六十四条</div>
+            <div class="lv">未取得建设工程规划许可证的，责令停止建设、限期拆除，可处工程造价10%以下罚款。</div>
+          </div>
+          <div class="mini-law">
+            <div class="lk"><span class="ai-tag ai-tag-blue" style="margin-right:4px">85%</span>《行政强制法》第四十四条</div>
+            <div class="lv">对违法的建筑物需要强制拆除的，应公告并限期当事人自行拆除。</div>
+          </div>
+        </div>
+        <div class="ai-drawer-foot"><button class="btn btn-sm" onclick="toggleAiDrawer()">关闭</button><button class="btn btn-sm btn-primary" onclick="document.getElementById('match-result').style.display='block';document.getElementById('ai-disc-result').style.display='block';toggleAiDrawer()">查看完整研判</button></div>
       </div>
     </div>
 
@@ -1206,6 +1277,7 @@ function switchPage(id){
   event.target.closest('.nav-item')?.classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n=>{if(n.textContent.trim().replace(/\d+/g,'').includes(pages[id]))n.classList.add('active')});
   document.getElementById('breadcrumb').innerHTML='首页 / <b>'+pages[id]+'</b>';
+  const ad=document.getElementById('ai-drawer');if(ad)ad.classList.remove('show');
 }
 
 function switchTab(el,tabId){
@@ -1242,6 +1314,12 @@ function switchReviewTab(el,tabId){
   el.classList.add('active');el.style.borderBottom='2px solid var(--primary)';el.style.fontWeight='500';el.style.color='var(--primary)';
   document.getElementById('review-tasks').style.display=tabId==='review-tasks'?'block':'none';
   document.getElementById('review-records').style.display=tabId==='review-records'?'block':'none';
+}
+
+// AI执法小助手 - 抽屉弹窗切换
+function toggleAiDrawer(){
+  const d=document.getElementById('ai-drawer');
+  d.classList.toggle('show');
 }
 </script>
 </body>
