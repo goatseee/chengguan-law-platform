@@ -95,62 +95,44 @@ tr:hover td{background:var(--gray-50)}
 .flow-step::after{content:'';position:absolute;top:16px;left:calc(50% + 20px);right:calc(-50% + 20px);height:2px;background:var(--gray-200)}
 .flow-step:last-child::after{display:none}
 .flow-step.done::after{background:var(--success)}
-/* AI Assistant Float */
-.ai-float{position:fixed;right:28px;bottom:28px;z-index:9999}
-.ai-float-btn{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(99,102,241,.45);display:flex;align-items:center;justify-content:center;transition:all .25s;position:relative}
-.ai-float-btn:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(99,102,241,.55)}
-.ai-float-btn svg{width:28px;height:28px}
-.ai-float-btn .pulse{position:absolute;width:100%;height:100%;border-radius:50%;background:rgba(99,102,241,.3);animation:aipulse 2s infinite}
-@keyframes aipulse{0%{transform:scale(1);opacity:.6}70%{transform:scale(1.5);opacity:0}100%{transform:scale(1.5);opacity:0}}
-.ai-float-badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:var(--danger);border-radius:50%;font-size:10px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;border:2px solid #fff}
-/* AI Panel */
-.ai-panel{position:fixed;right:28px;bottom:96px;width:520px;max-height:calc(100vh - 140px);background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.18);z-index:9998;display:none;flex-direction:column;overflow:hidden}
-.ai-panel.open{display:flex}
-.ai-panel-head{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
-.ai-panel-head h4{font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
-.ai-panel-head .close-btn{background:none;border:none;color:rgba(255,255,255,.8);cursor:pointer;font-size:20px;line-height:1;padding:4px}
-.ai-panel-head .close-btn:hover{color:#fff}
-.ai-panel-body{flex:1;overflow-y:auto;padding:0}
-.ai-section{padding:16px 20px;border-bottom:1px solid var(--gray-100)}
-.ai-section:last-child{border-bottom:none}
-.ai-section-title{font-size:13px;font-weight:600;color:var(--gray-900);margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.ai-section-title .icon{font-size:14px}
+/* AI Discretion Panel (in-page) */
+.ai-disc{border:1px solid #c4b5fd;border-radius:8px;overflow:hidden;margin-bottom:16px}
+.ai-disc-head{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:10px 16px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.ai-disc-head svg{width:18px;height:18px}
+.ai-disc-body{padding:14px 16px;background:#faf9ff}
+.ai-disc-row{display:flex;gap:6px;margin-bottom:5px;font-size:12px;line-height:1.6}
+.ai-disc-label{color:var(--gray-500);min-width:60px;flex-shrink:0}
+.ai-disc-val{color:var(--gray-900);flex:1}
 .ai-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500}
 .ai-tag-purple{background:#f0e6ff;color:#7c3aed}
 .ai-tag-blue{background:#e0edff;color:#1d4ed8}
 .ai-tag-green{background:#d1fae5;color:#065f46}
 .ai-tag-red{background:#fee2e2;color:#991b1b}
 .ai-tag-orange{background:#fef3c7;color:#92400e}
-/* AI Case Info */
-.ai-case-row{display:flex;gap:8px;margin-bottom:6px;font-size:12px;line-height:1.6}
-.ai-case-label{color:var(--gray-500);min-width:72px;flex-shrink:0}
-.ai-case-val{color:var(--gray-900);flex:1}
-/* AI History Cards */
-.ai-history-list{display:flex;flex-direction:column;gap:8px}
-.ai-history-card{background:var(--gray-50);border-radius:8px;padding:12px;border:1px solid var(--gray-200);transition:all .15s}
-.ai-history-card:hover{border-color:#c4b5fd;background:#faf5ff}
-.ai-history-card.repeat{border-left:3px solid var(--danger);background:#fef2f2}
-.ai-history-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.ai-history-top .case-type{font-size:13px;font-weight:600;color:var(--gray-900)}
-.ai-history-top .case-date{font-size:11px;color:var(--gray-500)}
-.ai-history-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;font-size:12px}
-.ai-history-grid .hg-label{color:var(--gray-500)}
-.ai-history-grid .hg-val{color:var(--gray-700)}
 /* Repeat Alert */
-.ai-repeat-alert{background:linear-gradient(135deg,#fef2f2,#fff5f5);border:1px solid #fecaca;border-radius:8px;padding:12px;margin-bottom:10px;display:flex;gap:10px;align-items:flex-start}
-.ai-repeat-alert .alert-icon{font-size:20px;flex-shrink:0;line-height:1.4}
-.ai-repeat-alert .alert-body{flex:1}
-.ai-repeat-alert .alert-title{font-size:13px;font-weight:600;color:var(--danger);margin-bottom:4px}
-.ai-repeat-alert .alert-desc{font-size:12px;color:#7f1d1d;line-height:1.5}
+.ai-repeat-alert{background:linear-gradient(135deg,#fef2f2,#fff5f5);border:1px solid #fecaca;border-radius:8px;padding:10px 12px;margin-bottom:12px;display:flex;gap:8px;align-items:flex-start}
+.ai-repeat-alert .alert-icon{font-size:18px;flex-shrink:0}
+.ai-repeat-alert .alert-title{font-size:12px;font-weight:600;color:var(--danger);margin-bottom:2px}
+.ai-repeat-alert .alert-desc{font-size:11px;color:#7f1d1d;line-height:1.5}
+/* History Cards */
+.ai-hist-card{background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--gray-200);margin-bottom:8px;transition:all .15s}
+.ai-hist-card:hover{border-color:#c4b5fd}
+.ai-hist-card.repeat{border-left:3px solid var(--danger);background:#fef8f8}
+.ai-hist-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.ai-hist-top .htype{font-size:12px;font-weight:600;color:var(--gray-900)}
+.ai-hist-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;font-size:11px}
+.ai-hist-grid .hl{color:var(--gray-500)}
+.ai-hist-grid .hv{color:var(--gray-700)}
 /* AI Suggest */
-.ai-suggest-item{display:flex;gap:10px;padding:10px;background:var(--gray-50);border-radius:8px;margin-bottom:8px;align-items:flex-start}
-.ai-suggest-level{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;white-space:nowrap;flex-shrink:0}
-.ai-suggest-level.light{background:#d1fae5;color:#065f46}
-.ai-suggest-level.normal{background:#fef3c7;color:#92400e}
-.ai-suggest-level.heavy{background:#fee2e2;color:#991b1b}
-.ai-suggest-text{font-size:12px;color:var(--gray-700);line-height:1.5}
-/* No data */
-.ai-empty{text-align:center;padding:20px;color:var(--gray-500);font-size:13px}
+.ai-sug{display:flex;gap:8px;padding:8px 10px;border-radius:6px;margin-bottom:6px;align-items:flex-start;font-size:12px}
+.ai-sug-level{padding:3px 8px;border-radius:5px;font-size:11px;font-weight:600;white-space:nowrap;flex-shrink:0}
+.ai-sug-level.light{background:#d1fae5;color:#065f46}
+.ai-sug-level.normal{background:#fef3c7;color:#92400e}
+.ai-sug-level.heavy{background:#fee2e2;color:#991b1b}
+.ai-sug-text{color:var(--gray-700);line-height:1.5}
+.ai-sug-text .sub{color:var(--gray-500);font-size:11px}
+.ai-sug.rec{border:2px solid #f59e0b;background:#fffbeb}
+.ai-sug.rec .ai-sug-text .reason{color:#92400e;font-weight:500}
 /* Chat */
 .chat-container{display:flex;flex-direction:column;height:500px;border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden}
 .chat-messages{flex:1;padding:16px;overflow-y:auto;background:var(--gray-50)}
@@ -403,8 +385,8 @@ tr:hover td{background:var(--gray-50)}
             <table>
               <thead><tr><th>采集时间</th><th>设备</th><th>当事人</th><th>违法事实</th><th>执法地点</th><th>操作</th></tr></thead>
               <tbody>
-                <tr><td>2026-06-16 10:15</td><td>终端 #A001</td><td>刘某某</td><td>占道经营（流动摊贩）</td><td>XX路88号</td><td><button class="btn btn-ghost btn-sm" onclick="toggleAIPanel()" title="AI研判" style="margin-right:4px">&#129302;研判</button><button class="btn btn-primary btn-sm" onclick="showModal('modal-simple')">确认立案</button></td></tr>
-                <tr><td>2026-06-16 09:40</td><td>记录仪 #B003</td><td>周某某</td><td>违规张贴广告</td><td>YY大道12号</td><td><button class="btn btn-ghost btn-sm" onclick="toggleAIPanel()" title="AI研判" style="margin-right:4px">&#129302;研判</button><button class="btn btn-primary btn-sm" onclick="showModal('modal-simple')">确认立案</button></td></tr>
+                <tr><td>2026-06-16 10:15</td><td>终端 #A001</td><td>刘某某</td><td>占道经营（流动摊贩）</td><td>XX路88号</td><td><button class="btn btn-primary btn-sm" onclick="showModal('modal-simple')">确认立案</button></td></tr>
+                <tr><td>2026-06-16 09:40</td><td>记录仪 #B003</td><td>周某某</td><td>违规张贴广告</td><td>YY大道12号</td><td><button class="btn btn-primary btn-sm" onclick="showModal('modal-simple')">确认立案</button></td></tr>
               </tbody>
             </table>
           </div>
@@ -513,25 +495,97 @@ tr:hover td{background:var(--gray-50)}
           <div style="margin-top:12px;padding:8px 12px;background:var(--primary-light);border-radius:4px;font-size:12px;color:var(--primary)">当前处于"裁量建议"环节，完成法规匹配与裁量建议后，将提交至法制审核节点。裁量建议将作为审批的重要参考依据。</div>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div style="display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:16px">
+        <!-- 左栏：案件情况录入 -->
         <div class="panel">
           <div class="panel-header"><h3>案件情况录入</h3><button class="btn btn-sm" onclick="switchPage('legal-kb')" style="margin-left:auto">查看法条知识库</button></div>
           <div class="panel-body">
             <div class="form-grid">
               <div class="form-group"><div class="form-label">案件类型 <span class="req">*</span></div><select class="form-select"><option>请选择违法类型</option><option selected>违章搭建</option><option>占道经营</option><option>垃圾分类违规</option><option>噪音扰民</option><option>违规排放</option></select></div>
               <div class="form-group"><div class="form-label">情节轻重 <span class="req">*</span></div><select class="form-select"><option>请选择</option><option>轻微</option><option selected>一般</option><option>严重</option></select></div>
+              <div class="form-group"><div class="form-label">当事人姓名 <span class="req">*</span></div><input class="form-input" value="李某某"></div>
+              <div class="form-group"><div class="form-label">证件号码</div><input class="form-input" value="3210****2815" placeholder="身份证号/统一社会信用代码"></div>
               <div class="form-group full"><div class="form-label">违法事实描述 <span class="req">*</span></div><textarea class="form-textarea" rows="3" placeholder="请描述违法事实详情">当事人于XX小区3栋1单元顶楼擅自搭建钢架棚约15平方米，未取得建设工程规划许可证，经核查属二次违法。</textarea></div>
               <div class="form-group"><div class="form-label">危害后果</div><select class="form-select"><option>无明显危害</option><option selected>影响市容市貌</option><option>影响建筑安全</option><option>影响公共安全</option></select></div>
               <div class="form-group"><div class="form-label">整改情况</div><select class="form-select"><option selected>未整改</option><option>部分整改</option><option>已整改</option></select></div>
               <div class="form-group"><div class="form-label">是否屡犯</div><select class="form-select"><option>否</option><option selected>是（二次违法）</option><option>是（三次及以上）</option></select></div>
               <div class="form-group full"><div class="form-label">补充说明</div><textarea class="form-textarea" rows="2" placeholder="其他需要说明的情况"></textarea></div>
             </div>
-            <div style="margin-top:16px;text-align:right;display:flex;gap:8px;justify-content:flex-end"><button class="btn" onclick="toggleAIPanel()" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none">&#129302; AI执法小助手</button><button class="btn btn-primary" onclick="document.getElementById('match-result').style.display='block'">智能匹配法规</button></div>
+            <div style="margin-top:16px;text-align:right"><button class="btn btn-primary" onclick="document.getElementById('match-result').style.display='block';document.getElementById('ai-disc-result').style.display='block'">智能匹配法规 + AI研判</button></div>
           </div>
         </div>
+        <!-- 中栏：AI执法小助手研判 -->
+        <div id="ai-disc-result" style="display:none">
+          <!-- 当前案件研判概要 -->
+          <div class="ai-disc" style="margin-bottom:12px">
+            <div class="ai-disc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg> AI执法小助手 · 案件研判</div>
+            <div class="ai-disc-body">
+              <div class="ai-disc-row"><span class="ai-disc-label">办案号</span><span class="ai-disc-val">CG-2026-001285</span></div>
+              <div class="ai-disc-row"><span class="ai-disc-label">当事人</span><span class="ai-disc-val"><b>李某某</b>（3210****2815）</span></div>
+              <div class="ai-disc-row"><span class="ai-disc-label">违法类型</span><span class="ai-disc-val"><span class="ai-tag ai-tag-purple">违章搭建</span></span></div>
+              <div class="ai-disc-row"><span class="ai-disc-label">情节标签</span><span class="ai-disc-val"><span class="ai-tag ai-tag-orange">一般</span> <span class="ai-tag ai-tag-red">二次违法</span> <span class="ai-tag ai-tag-orange">未整改</span></span></div>
+            </div>
+          </div>
+          <!-- 重复违法预警 -->
+          <div class="ai-repeat-alert">
+            <div class="alert-icon">&#9888;&#65039;</div>
+            <div>
+              <div class="alert-title">重复违法预警</div>
+              <div class="alert-desc">当事人<b>李某某</b>在同类违法类型（违章搭建）中存在 <b>1条</b> 过往涉案记录，属于重复违法，建议从重裁量。非同类型案件不推送。</div>
+            </div>
+          </div>
+          <!-- 同类型过往案件 -->
+          <div class="panel" style="margin-bottom:12px">
+            <div class="panel-header" style="padding:10px 16px"><h3 style="font-size:13px">同类型过往案件</h3><span class="ai-tag ai-tag-purple">违章搭建</span></div>
+            <div class="panel-body" style="padding:12px 16px">
+              <div class="ai-hist-card repeat">
+                <div class="ai-hist-top">
+                  <span class="htype">违章搭建（钢架棚）</span>
+                  <span class="ai-tag ai-tag-red">重复违法</span>
+                </div>
+                <div class="ai-hist-grid">
+                  <div><span class="hl">处罚结果：</span><span class="hv">责令限期拆除 + 罚款1,200元</span></div>
+                  <div><span class="hl">处置区域：</span><span class="hv">XX区城管执法大队</span></div>
+                  <div><span class="hl">处置人：</span><span class="hv">王执法（CG0056）</span></div>
+                  <div><span class="hl">处置日期：</span><span class="hv">2025-11-08</span></div>
+                </div>
+              </div>
+              <div style="margin-top:6px;font-size:11px;color:var(--gray-500)">&#10003; 仅展示同类型（违章搭建）过往案件，非同类型案件不推送</div>
+            </div>
+          </div>
+          <!-- AI量刑参考 -->
+          <div class="panel" style="margin-bottom:12px">
+            <div class="panel-header" style="padding:10px 16px"><h3 style="font-size:13px">AI量刑参考</h3><span style="font-size:11px;color:var(--gray-500)">结合案件情节与历史记录推荐</span></div>
+            <div class="panel-body" style="padding:12px 16px">
+              <div class="ai-sug">
+                <span class="ai-sug-level light">从轻</span>
+                <div class="ai-sug-text">责令限期拆除 / 罚款工程造价5%以下<br><span class="sub">首次违法、已主动整改、危害轻微</span></div>
+              </div>
+              <div class="ai-sug rec">
+                <span class="ai-sug-level normal">一般 &#10148;</span>
+                <div class="ai-sug-text">责令限期拆除 / 罚款工程造价5%-8%<br><span class="reason">二次违法且未整改，建议按一般幅度裁量</span></div>
+              </div>
+              <div class="ai-sug">
+                <span class="ai-sug-level heavy">从重</span>
+                <div class="ai-sug-text">责令限期拆除 / 罚款工程造价8%-10%<br><span class="sub">三次及以上违法、拒不整改、影响公共安全</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- 适用法规依据 -->
+          <div class="panel">
+            <div class="panel-header" style="padding:10px 16px"><h3 style="font-size:13px">适用法规依据</h3></div>
+            <div class="panel-body" style="padding:12px 16px;font-size:12px;line-height:1.8">
+              <div style="margin-bottom:4px"><b>1.《城乡规划法》第六十四条</b> <span class="ai-tag ai-tag-green">97%</span></div>
+              <div style="padding-left:14px;color:var(--gray-500);margin-bottom:8px">未取得建设工程规划许可证的，责令停止建设、限期拆除，可处工程造价10%以下罚款。</div>
+              <div style="margin-bottom:4px"><b>2.《行政强制法》第四十四条</b> <span class="ai-tag ai-tag-blue">85%</span></div>
+              <div style="padding-left:14px;color:var(--gray-500)">对违法的建筑物需要强制拆除的，应公告并限期当事人自行拆除。</div>
+            </div>
+          </div>
+        </div>
+        <!-- 右栏：法规匹配 + 裁量建议 -->
         <div>
           <div class="panel" id="match-result" style="display:none">
-            <div class="panel-header"><h3>法规匹配结果</h3><span style="font-size:12px;color:var(--gray-500)">按匹配度排序，数据来源：法条知识库</span></div>
+            <div class="panel-header"><h3>法规匹配结果</h3><span style="font-size:12px;color:var(--gray-500)">按匹配度排序</span></div>
             <div class="panel-body">
               <div class="reg-card selected" onclick="this.classList.toggle('selected')"><div class="reg-rank">1</div><div class="reg-content"><div class="reg-title">《城乡规划法》第六十四条</div><div class="reg-desc">未取得建设工程规划许可证的，责令停止建设、限期拆除，可处工程造价10%以下罚款。</div><div class="reg-match">匹配度 97%</div></div></div>
               <div class="reg-card" onclick="this.classList.toggle('selected')"><div class="reg-rank">2</div><div class="reg-content"><div class="reg-title">《行政强制法》第四十四条</div><div class="reg-desc">对违法的建筑物需要强制拆除的，应公告并限期当事人自行拆除。</div><div class="reg-match">匹配度 85%</div></div></div>
@@ -539,21 +593,21 @@ tr:hover td{background:var(--gray-50)}
               <button class="btn btn-sm" style="margin-top:8px" onclick="switchPage('legal-kb')">查看知识库中更多法规（5条）</button>
             </div>
           </div>
-          <div class="panel" id="discretion-suggest" style="display:none;margin-top:20px">
-            <div class="panel-header"><h3>裁量建议</h3><span style="font-size:12px;color:var(--gray-500)">基于选定法规及案件情节，提交后流转至法制审核</span></div>
+          <div class="panel" id="discretion-suggest" style="display:none;margin-top:16px">
+            <div class="panel-header"><h3>裁量建议</h3><span style="font-size:12px;color:var(--gray-500)">提交后流转至法制审核</span></div>
             <div class="panel-body">
               <div class="discretion-box">
-                <div class="disc-header">处罚幅度建议（基于选定法规及案件情节）</div>
+                <div class="disc-header">处罚幅度建议</div>
                 <div class="disc-row"><div class="disc-level light">从轻</div><div class="disc-range">责令限期拆除 / 罚款工程造价5%以下</div><div class="disc-select"><input type="radio" name="disc"></div></div>
                 <div class="disc-row"><div class="disc-level normal">一般</div><div class="disc-range">责令限期拆除 / 罚款工程造价5%-8%</div><div class="disc-select"><input type="radio" name="disc" checked></div></div>
                 <div class="disc-row"><div class="disc-level heavy">从重</div><div class="disc-range">责令限期拆除 / 罚款工程造价8%-10%</div><div class="disc-select"><input type="radio" name="disc"></div></div>
               </div>
               <div style="margin-top:12px">
                 <div class="form-label">裁量说明</div>
-                <textarea class="form-textarea" rows="2" placeholder="说明裁量理由，如：当事人属二次违法且未整改，建议按一般幅度裁量">当事人属二次违法且未整改，建议按一般幅度裁量</textarea>
+                <textarea class="form-textarea" rows="2" placeholder="说明裁量理由">当事人属二次违法且未整改，建议按一般幅度裁量</textarea>
               </div>
               <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center">
-                <button class="btn" onclick="document.getElementById('match-result').style.display='none';document.getElementById('discretion-suggest').style.display='none'">重新匹配</button>
+                <button class="btn" onclick="document.getElementById('match-result').style.display='none';document.getElementById('discretion-suggest').style.display='none';document.getElementById('ai-disc-result').style.display='none'">重新匹配</button>
                 <div style="display:flex;gap:8px">
                   <button class="btn">暂存</button>
                   <button class="btn btn-primary" onclick="alert('裁量建议已提交，流程流转至法制审核节点')">提交至法制审核</button>
@@ -1142,107 +1196,8 @@ tr:hover td{background:var(--gray-50)}
   </div>
 </div>
 
-<!-- AI执法小助手 - 全局悬浮按钮 -->
-<div class="ai-float">
-  <button class="ai-float-btn" onclick="toggleAIPanel()">
-    <span class="pulse"></span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="10" r="1.5"/><path d="M10 13h4"/></svg>
-    <span class="ai-float-badge">1</span>
-  </button>
-</div>
-
-<!-- AI执法小助手 - 研判弹窗 -->
-<div class="ai-panel" id="ai-panel">
-  <div class="ai-panel-head">
-    <h4>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
-      AI执法小助手
-    </h4>
-    <button class="close-btn" onclick="toggleAIPanel()">&times;</button>
-  </div>
-  <div class="ai-panel-body">
-    <!-- 当前案件研判 -->
-    <div class="ai-section">
-      <div class="ai-section-title"><span class="icon">&#128269;</span> 当前案件研判</div>
-      <div class="ai-case-row"><span class="ai-case-label">办案号</span><span class="ai-case-val">CG-2026-001285</span></div>
-      <div class="ai-case-row"><span class="ai-case-label">当事人</span><span class="ai-case-val"><b>李某某</b>（身份证：3210****2815）</span></div>
-      <div class="ai-case-row"><span class="ai-case-label">违法类型</span><span class="ai-case-val"><span class="ai-tag ai-tag-purple">违章搭建</span></span></div>
-      <div class="ai-case-row"><span class="ai-case-label">违法事实</span><span class="ai-case-val">顶楼擅自搭建钢架棚约15㎡，未取得建设工程规划许可证</span></div>
-      <div class="ai-case-row"><span class="ai-case-label">情节判断</span><span class="ai-case-val"><span class="ai-tag ai-tag-orange">一般</span> <span class="ai-tag ai-tag-red">二次违法</span> <span class="ai-tag ai-tag-orange">未整改</span></span></div>
-    </div>
-
-    <!-- 重复违法预警 -->
-    <div class="ai-section" style="background:#fef2f2">
-      <div class="ai-repeat-alert">
-        <div class="alert-icon">&#9888;&#65039;</div>
-        <div class="alert-body">
-          <div class="alert-title">重复违法预警</div>
-          <div class="alert-desc">当事人<b>李某某</b>在同类违法类型（违章搭建）中存在 <b>1条</b> 过往涉案记录，属于重复违法行为，建议从重裁量。非同类型违法（占道经营 1条）不作为参考推送。</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 同类型过往案件 -->
-    <div class="ai-section">
-      <div class="ai-section-title"><span class="icon">&#128203;</span> 同类型过往案件 <span class="ai-tag ai-tag-purple">违章搭建</span></div>
-      <div class="ai-history-list">
-        <div class="ai-history-card repeat">
-          <div class="ai-history-top">
-            <span class="case-type">违章搭建（钢架棚）</span>
-            <span class="ai-tag ai-tag-red">同类型 · 重复违法</span>
-          </div>
-          <div class="ai-history-grid">
-            <div><span class="hg-label">处罚结果：</span><span class="hg-val">责令限期拆除 + 罚款1,200元</span></div>
-            <div><span class="hg-label">处置区域：</span><span class="hg-val">XX区城管执法大队</span></div>
-            <div><span class="hg-label">处置人：</span><span class="hg-val">王执法（工号CG0056）</span></div>
-            <div><span class="hg-label">处置日期：</span><span class="hg-val">2025-11-08</span></div>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:8px;font-size:11px;color:var(--gray-500)">仅展示同类型（违章搭建）过往案件，非同类型案件不推送</div>
-    </div>
-
-    <!-- 量刑参考 -->
-    <div class="ai-section">
-      <div class="ai-section-title"><span class="icon">&#9878;&#65039;</span> AI量刑参考</div>
-      <div style="margin-bottom:8px;font-size:12px;color:var(--gray-500)">结合案件情节与当事人历史记录，智能推荐裁量幅度</div>
-      <div class="ai-suggest-item">
-        <span class="ai-suggest-level light">从轻</span>
-        <div class="ai-suggest-text">责令限期拆除 / 罚款工程造价5%以下<br><span style="color:var(--gray-500)">适用条件：首次违法、已主动整改、危害轻微</span></div>
-      </div>
-      <div class="ai-suggest-item" style="border:2px solid #f59e0b;background:#fffbeb">
-        <span class="ai-suggest-level normal">一般 &#10148; 推荐</span>
-        <div class="ai-suggest-text">责令限期拆除 / 罚款工程造价5%-8%<br><span style="color:#92400e;font-weight:500">推荐理由：当事人属二次违法且未整改，建议按一般幅度裁量</span></div>
-      </div>
-      <div class="ai-suggest-item">
-        <span class="ai-suggest-level heavy">从重</span>
-        <div class="ai-suggest-text">责令限期拆除 / 罚款工程造价8%-10%<br><span style="color:var(--gray-500)">适用条件：三次及以上违法、拒不整改、影响建筑/公共安全</span></div>
-      </div>
-    </div>
-
-    <!-- 法律依据 -->
-    <div class="ai-section">
-      <div class="ai-section-title"><span class="icon">&#128220;</span> 适用法规依据</div>
-      <div style="font-size:12px;color:var(--gray-700);line-height:1.8">
-        <div style="margin-bottom:6px"><b>1.《城乡规划法》第六十四条</b> <span class="ai-tag ai-tag-green">匹配度97%</span></div>
-        <div style="padding-left:16px;color:var(--gray-500)">未取得建设工程规划许可证的，责令停止建设、限期拆除，可处工程造价10%以下罚款。</div>
-        <div style="margin-top:8px;margin-bottom:6px"><b>2.《行政强制法》第四十四条</b> <span class="ai-tag ai-tag-blue">匹配度85%</span></div>
-        <div style="padding-left:16px;color:var(--gray-500)">对违法的建筑物需要强制拆除的，应公告并限期当事人自行拆除。</div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
 const pages={dashboard:'工作台','case-number':'办案号申请','simple-process':'简易程序执法',statistics:'案件统计',discretion:'自由裁量','legal-kb':'法条知识库',review:'复核操作',scan:'案件扫描'};
-
-// AI执法小助手
-let aiPanelOpen=false;
-function toggleAIPanel(){
-  const panel=document.getElementById('ai-panel');
-  aiPanelOpen=!aiPanelOpen;
-  if(aiPanelOpen){panel.classList.add('open')}else{panel.classList.remove('open')}
-}
 
 function switchPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
