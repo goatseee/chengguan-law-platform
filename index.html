@@ -448,7 +448,7 @@ tr:hover td{background:var(--gray-50)}
           </div>
           <div class="table-wrap">
           <table>
-            <thead><tr><th><input type="checkbox"></th><th>申请编号</th><th>关联案件编号</th><th>承办人</th><th>当事人类型</th><th>当事人信息</th><th>申请区县</th><th>省厅状态</th><th>申请时间</th><th>操作</th></tr></thead>
+            <thead><tr><th><input type="checkbox"></th><th>申请编号</th><th>关联案件编号</th><th>承办人</th><th>当事人类型</th><th>当事人信息</th><th>申请区县</th><th>办案号</th><th>省厅状态</th><th>申请时间</th><th>操作</th></tr></thead>
             <tbody>
               <tr>
                 <td><input type="checkbox"></td>
@@ -458,6 +458,7 @@ tr:hover td{background:var(--gray-50)}
                 <td><span class="badge badge-blue">单位</span></td>
                 <td style="font-size:12px">某建设有限公司<br><span style="color:var(--gray-500)">9132XXXX0123</span></td>
                 <td>XX区</td>
+                <td style="color:var(--gray-400)">-</td>
                 <td><span class="badge badge-orange">待报省厅</span></td>
                 <td>2026-07-09</td>
                 <td><button class="btn-ghost btn-sm">查看</button></td>
@@ -470,6 +471,7 @@ tr:hover td{background:var(--gray-50)}
                 <td><span class="badge badge-green">个人</span></td>
                 <td style="font-size:12px">李某某<br><span style="color:var(--gray-500)">3210****2815</span></td>
                 <td>XX区</td>
+                <td style="color:var(--gray-400)">-</td>
                 <td><span class="badge badge-orange">待报省厅</span></td>
                 <td>2026-07-09</td>
                 <td><button class="btn-ghost btn-sm">查看</button></td>
@@ -482,6 +484,7 @@ tr:hover td{background:var(--gray-50)}
                 <td><span class="badge badge-green">个人</span></td>
                 <td style="font-size:12px">陈某某<br><span style="color:var(--gray-500)">3210****5678</span></td>
                 <td>YY县</td>
+                <td style="color:var(--gray-400)">-</td>
                 <td><span class="badge badge-blue">已报省厅</span></td>
                 <td>2026-07-08</td>
                 <td><button class="btn-ghost btn-sm">查看</button></td>
@@ -494,6 +497,7 @@ tr:hover td{background:var(--gray-50)}
                 <td><span class="badge badge-blue">单位</span></td>
                 <td style="font-size:12px">某餐饮管理有限公司<br><span style="color:var(--gray-500)">9132XXXX8899</span></td>
                 <td>YY县</td>
+                <td style="color:var(--gray-400)">-</td>
                 <td><span class="badge badge-blue">已报省厅</span></td>
                 <td>2026-07-08</td>
                 <td><button class="btn-ghost btn-sm">查看</button></td>
@@ -506,9 +510,10 @@ tr:hover td{background:var(--gray-50)}
                 <td><span class="badge badge-blue">单位</span></td>
                 <td style="font-size:12px">某饭店<br><span style="color:var(--gray-500)">9132****8899</span></td>
                 <td>ZZ区</td>
+                <td style="color:var(--success);font-weight:600">CG-2026-05810</td>
                 <td><span class="badge badge-green">已获取办案号</span></td>
                 <td>2026-07-07</td>
-                <td><button class="btn btn-success btn-sm" onclick="showModal('modal-distribute')">下发</button><button class="btn-ghost btn-sm" style="margin-left:4px">查看号段</button></td>
+                <td><button class="btn-ghost btn-sm">查看</button></td>
               </tr>
               <tr>
                 <td><input type="checkbox"></td>
@@ -518,9 +523,10 @@ tr:hover td{background:var(--gray-50)}
                 <td><span class="badge badge-green">个人</span></td>
                 <td style="font-size:12px">赵某某<br><span style="color:var(--gray-500)">320XXXXXXXXX5678</span></td>
                 <td>AA区</td>
+                <td style="color:var(--success);font-weight:600">CG-2026-05792</td>
                 <td><span class="badge badge-green">已获取办案号</span></td>
                 <td>2026-07-06</td>
-                <td><button class="btn btn-success btn-sm" onclick="showModal('modal-distribute')">下发</button><button class="btn-ghost btn-sm" style="margin-left:4px">查看号段</button></td>
+                <td><button class="btn-ghost btn-sm">查看</button></td>
               </tr>
             </tbody>
           </table>
@@ -1480,49 +1486,13 @@ tr:hover td{background:var(--gray-50)}
           <tbody>
             <tr><td>BT-20260707-01</td><td style="color:var(--primary);font-weight:500">CG-2026-05801 ~ CG-2026-05812</td><td>12</td><td>2026-07-07 09:00</td><td>2026-07-07 14:30</td><td><span class="badge badge-green">已分配</span></td><td><button class="btn-ghost btn-sm">查看明细</button></td></tr>
             <tr><td>BT-20260706-01</td><td style="color:var(--primary);font-weight:500">CG-2026-05781 ~ CG-2026-05800</td><td>20</td><td>2026-07-06 10:00</td><td>2026-07-06 16:15</td><td><span class="badge badge-green">已分配</span></td><td><button class="btn-ghost btn-sm">查看明细</button></td></tr>
-            <tr><td>BT-20260705-01</td><td style="color:var(--primary);font-weight:500">CG-2026-05765 ~ CG-2026-05780</td><td>16</td><td>2026-07-05 08:30</td><td>2026-07-05 15:00</td><td><span class="badge badge-orange">待分配</span></td><td><button class="btn btn-primary btn-sm" onclick="showModal('modal-distribute');hideModal('modal-province-numbers')">分配下发</button></td></tr>
+            <tr><td>BT-20260705-01</td><td style="color:var(--primary);font-weight:500">CG-2026-05765 ~ CG-2026-05780</td><td>16</td><td>2026-07-05 08:30</td><td>2026-07-05 15:00</td><td><span class="badge badge-orange">待分配</span></td><td><button class="btn-ghost btn-sm">查看明细</button></td></tr>
             <tr><td>BT-20260704-01</td><td style="color:var(--primary);font-weight:500">CG-2026-05750 ~ CG-2026-05764</td><td>15</td><td>2026-07-04 09:15</td><td>2026-07-04 13:45</td><td><span class="badge badge-green">已分配</span></td><td><button class="btn-ghost btn-sm">查看明细</button></td></tr>
           </tbody>
         </table>
       </div>
     </div>
     <div class="modal-footer"><button class="btn" onclick="hideModal('modal-province-numbers')">关闭</button></div>
-  </div>
-</div>
-
-<!-- ===== Modal: 办案号下发 ===== -->
-<div class="modal-overlay" id="modal-distribute">
-  <div class="modal">
-    <div class="modal-header"><h3>办案号下发至区县</h3><button class="modal-close" onclick="hideModal('modal-distribute')">&times;</button></div>
-    <div class="modal-body">
-      <div style="margin-bottom:16px;padding:12px;background:var(--gray-50);border-radius:var(--radius);font-size:13px">
-        <div style="font-weight:600;margin-bottom:6px">申请信息</div>
-        <div>申请编号：AP-20260614-002 | 申请区县：YY县 | 申请人：孙七</div>
-        <div>案件类型：违规排放 | 申请数量：12</div>
-      </div>
-      <div style="margin-bottom:16px">
-        <div class="form-label" style="margin-bottom:8px">省厅返回号段</div>
-        <div style="background:var(--primary-light);border:1px solid var(--primary);border-radius:var(--radius);padding:12px;font-size:13px">
-          <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="color:var(--gray-500)">号段范围</span><span style="font-weight:600;color:var(--primary)">CG-2026-05801 ~ CG-2026-05812</span></div>
-          <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-500)">号段数量</span><span style="font-weight:600">12个</span></div>
-        </div>
-      </div>
-      <div class="form-grid">
-        <div class="form-group"><div class="form-label">下发区县 <span class="req">*</span></div><input class="form-input" value="YY县" readonly></div>
-        <div class="form-group"><div class="form-label">下发数量 <span class="req">*</span></div><input class="form-input" type="number" value="12"></div>
-        <div class="form-group full"><div class="form-label">分配明细</div>
-          <table style="font-size:12px;margin-top:4px">
-            <thead><tr><th>序号</th><th>办案号</th><th>分配至</th></tr></thead>
-            <tbody>
-              <tr><td>1-6</td><td>CG-2026-05801 ~ 05806</td><td><input class="form-input" style="height:28px;font-size:12px" value="YY县一大队"></td></tr>
-              <tr><td>7-12</td><td>CG-2026-05807 ~ 05812</td><td><input class="form-input" style="height:28px;font-size:12px" value="YY县二大队"></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div style="margin-top:12px;padding:8px 12px;background:#d1fae5;border-radius:4px;font-size:12px;color:#065f46">确认下发后，办案号将推送至对应区县分局账号，区县工作人员即可使用</div>
-    </div>
-    <div class="modal-footer"><button class="btn" onclick="hideModal('modal-distribute')">取消</button><button class="btn btn-success" onclick="hideModal('modal-distribute')">确认下发</button></div>
   </div>
 </div>
 
