@@ -347,6 +347,11 @@ tr:hover td{background:var(--gray-50)}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
       案件扫描
     </div>
+    <div class="nav-group">数据管理</div>
+    <div class="nav-item" onclick="switchPage('simple-cases')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+      简易案件管理
+    </div>
   </div>
 </div>
 
@@ -1166,6 +1171,134 @@ tr:hover td{background:var(--gray-50)}
       </div>
     </div>
 
+    <!-- ===== 简易案件管理 ===== -->
+    <div class="page" id="page-simple-cases">
+      <!-- 数据来源说明 -->
+      <div style="margin-bottom:16px;padding:12px 16px;background:var(--primary-light);border-radius:6px;font-size:12px;color:var(--primary);display:flex;align-items:center;gap:8px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;flex-shrink:0"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        各区县执法终端处罚后自动推送简易案件信息至市平台，市平台可查看、搜索、推送至省平台
+      </div>
+
+      <!-- 统计卡片 -->
+      <div class="stats-grid" style="margin-bottom:20px">
+        <div class="stat-card"><div class="label">今日推送</div><div class="value">47</div><div class="trend">+12%</div></div>
+        <div class="stat-card green"><div class="label">本月累计</div><div class="value">1,286</div></div>
+        <div class="stat-card orange"><div class="label">待推送省平台</div><div class="value">89</div></div>
+        <div class="stat-card" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff"><div class="label" style="color:rgba(255,255,255,.7)">已推送省平台</div><div class="value">1,197</div></div>
+      </div>
+
+      <!-- 搜索 + 列表 -->
+      <div class="panel">
+        <div class="panel-header">
+          <h3>简易案件列表</h3>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-sm" onclick="alert('已导出Excel')">导出</button>
+            <button class="btn btn-sm btn-primary" onclick="pushToProvince()">批量推送省平台</button>
+          </div>
+        </div>
+        <div class="panel-body" style="padding:0">
+          <div class="filter-bar" style="padding:16px 12px 0">
+            <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" placeholder="搜索编号/当事人/车牌号"></div>
+            <select class="form-select" style="width:130px"><option>全部地区</option><option>XX区</option><option>YY县</option><option>ZZ区</option><option>AA区</option></select>
+            <select class="form-select" style="width:130px"><option>违法类型</option><option>占道经营</option><option>违章搭建</option><option>垃圾分类</option><option>噪音扰民</option><option>违规排放</option></select>
+            <input type="date" class="form-input" style="width:140px" value="">
+            <select class="form-select" style="width:120px"><option>推送状态</option><option>未推送</option><option>已推送</option><option>推送失败</option></select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th><input type="checkbox"></th><th>编号</th><th>地区</th><th>案件类型</th><th>当事人</th><th>违法时间</th><th>处罚时间</th><th>处罚金额</th><th>推送状态</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td style="color:var(--primary);cursor:pointer" onclick="showModal('modal-simple-case')">JY-2026-0701-0042</td>
+                  <td>XX区</td>
+                  <td><span style="font-size:11px;background:#dbeafe;color:#1d4ed8;padding:2px 6px;border-radius:3px">占道经营</span></td>
+                  <td>王某某</td>
+                  <td>2026-07-01 09:15</td>
+                  <td>2026-07-01 09:22</td>
+                  <td style="font-weight:600">200元</td>
+                  <td><span class="badge badge-green">已推送</span></td>
+                  <td><button class="btn-ghost btn-sm" onclick="showModal('modal-simple-case')">详情</button><button class="btn-ghost btn-sm" onclick="alert('已查看执法取证')">取证</button></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td style="color:var(--primary);cursor:pointer" onclick="showModal('modal-simple-case')">JY-2026-0701-0041</td>
+                  <td>YY县</td>
+                  <td><span style="font-size:11px;background:#fef3c7;color:#92400e;padding:2px 6px;border-radius:3px">噪音扰民</span></td>
+                  <td>陈某某</td>
+                  <td>2026-07-01 08:40</td>
+                  <td>2026-07-01 08:52</td>
+                  <td style="font-weight:600">100元</td>
+                  <td><span class="badge badge-green">已推送</span></td>
+                  <td><button class="btn-ghost btn-sm" onclick="showModal('modal-simple-case')">详情</button><button class="btn-ghost btn-sm">取证</button></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td style="color:var(--primary);cursor:pointer" onclick="showModal('modal-simple-case')">JY-2026-0630-0039</td>
+                  <td>XX区</td>
+                  <td><span style="font-size:11px;background:#fee2e2;color:#991b1b;padding:2px 6px;border-radius:3px">违章搭建</span></td>
+                  <td>某公司</td>
+                  <td>2026-06-30 16:20</td>
+                  <td>2026-06-30 16:35</td>
+                  <td style="font-weight:600">2,000元</td>
+                  <td><span class="badge badge-orange">未推送</span></td>
+                  <td><button class="btn-ghost btn-sm" onclick="showModal('modal-simple-case')">详情</button><button class="btn-ghost btn-sm">取证</button><button class="btn-ghost btn-sm" style="color:var(--primary)" onclick="pushToProvince()">推送</button></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td style="color:var(--primary);cursor:pointer" onclick="showModal('modal-simple-case')">JY-2026-0630-0038</td>
+                  <td>ZZ区</td>
+                  <td><span style="font-size:11px;background:#d1fae5;color:#065f46;padding:2px 6px;border-radius:3px">垃圾分类</span></td>
+                  <td>刘某某</td>
+                  <td>2026-06-30 14:05</td>
+                  <td>2026-06-30 14:12</td>
+                  <td style="font-weight:600">50元</td>
+                  <td><span class="badge badge-green">已推送</span></td>
+                  <td><button class="btn-ghost btn-sm" onclick="showModal('modal-simple-case')">详情</button><button class="btn-ghost btn-sm">取证</button></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td style="color:var(--primary);cursor:pointer" onclick="showModal('modal-simple-case')">JY-2026-0630-0037</td>
+                  <td>AA区</td>
+                  <td><span style="font-size:11px;background:#fee2e2;color:#991b1b;padding:2px 6px;border-radius:3px">违规排放</span></td>
+                  <td>某饭店</td>
+                  <td>2026-06-30 11:30</td>
+                  <td>2026-06-30 11:48</td>
+                  <td style="font-weight:600">3,000元</td>
+                  <td><span class="badge badge-red">推送失败</span></td>
+                  <td><button class="btn-ghost btn-sm" onclick="showModal('modal-simple-case')">详情</button><button class="btn-ghost btn-sm">取证</button><button class="btn-ghost btn-sm" style="color:var(--danger)" onclick="pushToProvince()">重试</button></td>
+                </tr>
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td style="color:var(--primary);cursor:pointer" onclick="showModal('modal-simple-case')">JY-2026-0629-0035</td>
+                  <td>YY县</td>
+                  <td><span style="font-size:11px;background:#dbeafe;color:#1d4ed8;padding:2px 6px;border-radius:3px">占道经营</span></td>
+                  <td>赵某某</td>
+                  <td>2026-06-29 10:15</td>
+                  <td>2026-06-29 10:28</td>
+                  <td style="font-weight:600">150元</td>
+                  <td><span class="badge badge-green">已推送</span></td>
+                  <td><button class="btn-ghost btn-sm" onclick="showModal('modal-simple-case')">详情</button><button class="btn-ghost btn-sm">取证</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding:12px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--gray-500)">
+            <span>共 1,286 条，当前显示 1-6</span>
+            <div style="display:flex;gap:4px">
+              <button class="btn btn-sm" disabled>上一页</button>
+              <button class="btn btn-sm btn-primary">1</button>
+              <button class="btn btn-sm">2</button>
+              <button class="btn btn-sm">3</button>
+              <span>...</span>
+              <button class="btn btn-sm">215</button>
+              <button class="btn btn-sm">下一页</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1388,8 +1521,84 @@ tr:hover td{background:var(--gray-50)}
   </div>
 </div>
 
+<!-- ===== Modal: 简易案件详情 ===== -->
+<div class="modal-overlay" id="modal-simple-case">
+  <div class="modal" style="max-width:780px">
+    <div class="modal-header"><h3>简易案件详情</h3><button class="modal-close" onclick="hideModal('modal-simple-case')">&times;</button></div>
+    <div class="modal-body" style="padding:16px 20px">
+      <!-- 基本信息 -->
+      <div style="margin-bottom:16px">
+        <div style="font-size:13px;font-weight:600;color:var(--gray-900);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--primary)">基本信息</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px 20px;font-size:12px">
+          <div><span style="color:var(--gray-500)">编号：</span><span style="font-weight:500">JY-2026-0701-0042</span></div>
+          <div><span style="color:var(--gray-500)">设备账号：</span><span>SB-XXQ-0056</span></div>
+          <div><span style="color:var(--gray-500)">地区：</span><span>XX区</span></div>
+          <div><span style="color:var(--gray-500)">状态：</span><span class="badge badge-green">已推送省平台</span></div>
+          <div><span style="color:var(--gray-500)">创建时间：</span><span>2026-07-01 09:22:15</span></div>
+          <div><span style="color:var(--gray-500)">更新时间：</span><span>2026-07-01 09:22:15</span></div>
+        </div>
+      </div>
+      <!-- 当事人信息 -->
+      <div style="margin-bottom:16px">
+        <div style="font-size:13px;font-weight:600;color:var(--gray-900);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--primary)">当事人信息</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px 20px;font-size:12px">
+          <div><span style="color:var(--gray-500)">当事人类型：</span><span>公民</span></div>
+          <div><span style="color:var(--gray-500)">组织主体：</span><span>-</span></div>
+          <div><span style="color:var(--gray-500)">身份证号：</span><span>3210****2815</span></div>
+          <div><span style="color:var(--gray-500)">统一社会信用代码：</span><span>-</span></div>
+          <div><span style="color:var(--gray-500)">统一社会代码（个体）：</span><span>-</span></div>
+          <div><span style="color:var(--gray-500)">车牌号：</span><span>苏A·XX123</span></div>
+        </div>
+        <div style="margin-top:10px">
+          <div style="font-size:12px;color:var(--gray-500);margin-bottom:6px">当事人身份图片</div>
+          <div style="display:flex;gap:8px">
+            <div style="width:80px;height:60px;background:var(--gray-100);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gray-400);border:1px dashed var(--gray-300)">身份证正面</div>
+            <div style="width:80px;height:60px;background:var(--gray-100);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gray-400);border:1px dashed var(--gray-300)">身份证反面</div>
+            <div style="width:80px;height:60px;background:var(--gray-100);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gray-400);border:1px dashed var(--gray-300)">现场人像</div>
+          </div>
+        </div>
+      </div>
+      <!-- 违法信息 -->
+      <div style="margin-bottom:16px">
+        <div style="font-size:13px;font-weight:600;color:var(--gray-900);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--primary)">违法信息</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;font-size:12px">
+          <div><span style="color:var(--gray-500)">违法时间：</span><span>2026-07-01 09:15</span></div>
+          <div><span style="color:var(--gray-500)">违法地点：</span><span>XX区XX路88号</span></div>
+          <div style="grid-column:1/-1"><span style="color:var(--gray-500)">违法行为：</span><span>占道经营（流动摊贩），面积约5平方米</span></div>
+          <div style="grid-column:1/-1"><span style="color:var(--gray-500)">违反的法律条款：</span><span>《城市市容和环境卫生管理条例》第三十六条</span></div>
+          <div style="grid-column:1/-1"><span style="color:var(--gray-500)">处罚的依据条款：</span><span>《城市市容和环境卫生管理条例》第三十六条第（三）项</span></div>
+        </div>
+        <div style="margin-top:10px">
+          <div style="font-size:12px;color:var(--gray-500);margin-bottom:6px">执法取证</div>
+          <div style="display:flex;gap:8px">
+            <div style="width:80px;height:60px;background:var(--gray-100);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gray-400);border:1px dashed var(--gray-300)">现场照片1</div>
+            <div style="width:80px;height:60px;background:var(--gray-100);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gray-400);border:1px dashed var(--gray-300)">现场照片2</div>
+            <div style="width:80px;height:60px;background:var(--gray-100);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gray-400);border:1px dashed var(--gray-300)">现场照片3</div>
+          </div>
+        </div>
+      </div>
+      <!-- 处罚信息 -->
+      <div style="margin-bottom:16px">
+        <div style="font-size:13px;font-weight:600;color:var(--gray-900);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--primary)">处罚信息</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px 20px;font-size:12px">
+          <div><span style="color:var(--gray-500)">处罚金额：</span><span style="font-weight:600;color:var(--danger)">200元</span></div>
+          <div><span style="color:var(--gray-500)">立即改正：</span><span>是</span></div>
+          <div><span style="color:var(--gray-500)">处罚地点：</span><span>XX区XX路88号</span></div>
+          <div><span style="color:var(--gray-500)">处罚票号：</span><span>FP-20260701-0042</span></div>
+          <div><span style="color:var(--gray-500)">公章落款日期：</span><span>2026-07-01</span></div>
+          <div><span style="color:var(--gray-500)">限时罚款说明：</span><span>-</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="hideModal('modal-simple-case')">关闭</button>
+      <button class="btn btn-primary" onclick="pushToProvince();hideModal('modal-simple-case')">推送省平台</button>
+    </div>
+  </div>
+</div>
+
 <script>
-const pages={dashboard:'工作台','case-number':'办案号申请','simple-process':'简易程序执法',statistics:'案件统计',discretion:'自由裁量','legal-kb':'法条知识库',review:'复核操作',scan:'案件扫描'};
+const pages={dashboard:'工作台','case-number':'办案号申请','simple-process':'简易程序执法',statistics:'案件统计',discretion:'自由裁量','legal-kb':'法条知识库',review:'复核操作',scan:'案件扫描','simple-cases':'简易案件管理'};
 
 function switchPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -1525,6 +1734,12 @@ function copyRegItem(btn){
     const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
     btn.classList.add('copied');btn.innerHTML='&#10003; 已复制';setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='&#128203; 复制';},1500);
   });
+}
+
+// 推送省平台
+function pushToProvince(){
+  const msg='确认将所选简易案件推送至省平台？推送后数据将同步至省厅系统。';
+  if(confirm(msg)){alert('推送任务已提交，预计5分钟内完成同步');}
 }
 </script>
 </body>
