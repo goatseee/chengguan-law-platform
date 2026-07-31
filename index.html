@@ -1842,7 +1842,8 @@ tr:hover td{background:var(--gray-50)}
 </div>
 
 <script>
-const pages={dashboard:'工作台','case-number':'办案号申请','simple-process':'简易程序执法',statistics:'驾驶舱',discretion:'自由裁量','legal-kb':'法条知识库',review:'复核操作',scan:'案件扫描','simple-cases':'简易案件管理'};
+window.onerror=function(msg,src,line,col,err){document.title='JS_ERROR:'+line+':'+msg;alert('JS错误 第'+line+'行: '+msg);return true;};
+try{
 
 function switchPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -2422,6 +2423,7 @@ function fillCaseInfo(caseId){
     document.getElementById('apply-person-addr').textContent=d.personAddr||'-';
   }
 }
+}catch(e){document.title='JS_ERROR:'+e.message;alert('JS初始化错误: '+e.message);}
 </script>
 </body>
 </html>
