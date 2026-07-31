@@ -698,7 +698,7 @@ tr:hover td{background:var(--gray-50)}
         </div>
         <div class="panel">
           <div class="panel-header"><h3>案件状态分布</h3></div>
-          <div class="panel-body" style="display:flex;align-items:center;gap:20px">
+          <div class="panel-body" id="cockpit-donut-body" style="display:flex;align-items:center;gap:20px">
             <div class="donut-chart" id="cockpit-donut" style="background:conic-gradient(var(--success) 0deg 216deg,var(--primary) 216deg 280deg,var(--warning) 280deg 324deg,var(--danger) 324deg 360deg)">
               <div class="donut-center"><div class="dc-val" id="donut-total">1,728</div><div class="dc-label">案件总量</div></div>
             </div>
@@ -733,7 +733,7 @@ tr:hover td{background:var(--gray-50)}
       <div class="cockpit-row">
         <div class="panel">
           <div class="panel-header"><h3>当事人类型分析</h3></div>
-          <div class="panel-body" style="display:flex;align-items:center;gap:20px">
+          <div class="panel-body" id="cockpit-party-body" style="display:flex;align-items:center;gap:20px">
             <div class="donut-chart" id="cockpit-party-donut" style="background:conic-gradient(var(--primary) 0deg 180deg,var(--warning) 180deg 306deg,var(--info) 306deg 360deg)">
               <div class="donut-center"><div class="dc-val" id="party-donut-total">1,728</div><div class="dc-label">当事人</div></div>
             </div>
@@ -1848,7 +1848,6 @@ function switchPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  event.target.closest('.nav-item')?.classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n=>{if(n.textContent.trim().replace(/\d+/g,'').includes(pages[id]))n.classList.add('active')});
   document.getElementById('breadcrumb').innerHTML='首页 / <b>'+pages[id]+'</b>';
   const ad=document.getElementById('ai-drawer');if(ad)ad.classList.remove('show');
@@ -2264,8 +2263,7 @@ function cockpitRenderDonut(){
     {name:'超期未结',val:d.ove,color:'#dc2626'}
   ];
   var html=svgDonut(data,cockpitState.type,{size:160,r:60,sw:24,centerLabel:'案件总量'});
-  document.getElementById('cockpit-donut').parentElement.innerHTML='<div style="display:flex;align-items:center;gap:20px;justify-content:center">'+html+'</div>';
-  // 重新设置donut元素的引用——因为上面替换了parentElement的innerHTML
+  document.getElementById('cockpit-donut-body').innerHTML='<div style="display:flex;align-items:center;gap:20px;justify-content:center">'+html+'</div>';
 }
 // 办理效率
 function cockpitRenderEfficiency(){
@@ -2297,8 +2295,7 @@ function cockpitRenderAmountChart(){
 function cockpitRenderPartyChart(){
   var filter=cockpitState.type;
   var html=svgDonut(cockpitPartyData,filter,{size:160,r:60,sw:24,centerLabel:'当事人'});
-  var panelBody=document.getElementById('cockpit-party-donut').parentElement;
-  panelBody.innerHTML='<div style="display:flex;align-items:center;gap:20px;justify-content:center">'+html+'</div>';
+  document.getElementById('cockpit-party-body').innerHTML='<div style="display:flex;align-items:center;gap:20px;justify-content:center">'+html+'</div>';
 }
 // 办案人员TOP5 - 水平柱状图
 function cockpitRenderOfficerChart(){
