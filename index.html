@@ -2385,24 +2385,7 @@ function cockpitSelectRegion(k){
   document.getElementById('cockpit-region').value=cockpitState.region;
   cockpitRenderAll();
 }
-// 初始化
-cockpitRenderAll();
-}
-
-// 区域下拉切换
-function cockpitRegionChange(val){
-  cockpitState.region=val;
-  cockpitRenderAll();
-}
-
-// 点击区域进度条选择
-function cockpitSelectRegion(k){
-  cockpitState.region=cockpitState.region===k?'all':k;
-  document.getElementById('cockpit-region').value=cockpitState.region;
-  cockpitRenderAll();
-}
-
-// 初始化驾驶舱（页面加载时执行）
+// 初始化驾驶舱
 cockpitRenderAll();
 
 
