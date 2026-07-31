@@ -1842,8 +1842,7 @@ tr:hover td{background:var(--gray-50)}
 </div>
 
 <script>
-window.onerror=function(msg,src,line,col,err){document.title='JS_ERROR:'+line+':'+msg;alert('JS错误 第'+line+'行: '+msg);return true;};
-try{
+window.onerror=function(msg,src,line,col,err){document.title='JS_ERROR:'+line+':'+msg;return true;};
 
 function switchPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -1875,7 +1874,7 @@ const observer=new MutationObserver(()=>{
   const ds=document.getElementById('discretion-suggest');
   if(mr&&mr.style.display!=='none'){ds&&(ds.style.display='block')}
 });
-observer.observe(document.getElementById('match-result'),{attributes:true,attributeFilter:['style']});
+try{observer.observe(document.getElementById('match-result'),{attributes:true,attributeFilter:['style']});}catch(e){console.error('observer error:',e);}
 
 // 案件扫描 - 模拟OCR
 function simulateOCR(){
@@ -2387,7 +2386,7 @@ function cockpitSelectRegion(k){
   cockpitRenderAll();
 }
 // 初始化驾驶舱
-cockpitRenderAll();
+try{cockpitRenderAll();}catch(e){console.error('cockpitRenderAll init error:',e);}
 
 
 // 办案号申请 - 选择案件后自动带入当事人信息
@@ -2423,7 +2422,6 @@ function fillCaseInfo(caseId){
     document.getElementById('apply-person-addr').textContent=d.personAddr||'-';
   }
 }
-}catch(e){document.title='JS_ERROR:'+e.message;alert('JS初始化错误: '+e.message);}
 </script>
 </body>
 </html>
